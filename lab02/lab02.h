@@ -17,7 +17,7 @@
 # endif
 
 # ifndef SIZE
-#  define SIZE 1e3 // size of the array
+#  define SIZE 4 // size of the array
 # endif
 
 /*	array_aux.c */

@@ -9,14 +9,14 @@ So for example, an ORDER of 1 and SIZE of 5 will generate the following array:
 ```
 
 ## Usage
-To compile que program, simple use a C compiler and the source files (*.c) as arguments
+To compile que program, simple use a C compiler and the source files (*.c) as arguments.
 ```bash
 gcc main.c algos.c array_aux.c
 ```
 Although, there's is two ways to use the program.\
 No extra flags means the program will use the values of the macros SIZE and ORDER that are in the lab02.h file
 If you want to set the macros at compilation, you need to specify them using the -D flag
-To compile que program use -D flag to set the macros values as so
+To compile que program use -D flag to set the macros values as so:
 ```bash
 gcc main.c algos.c array_aux.c -DSIZE=10 -DORDER=1
 ```
