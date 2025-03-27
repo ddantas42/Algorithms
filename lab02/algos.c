@@ -56,7 +56,7 @@ void	bubble_sort_opt(int arr[], int n, int *troca, int *comp)
 				swapped = 1;
 			}
 		}
-		if ((*comp)++, !swapped)
+		if ((*comp)++, swapped == 0)
 			break;
 	}
 }

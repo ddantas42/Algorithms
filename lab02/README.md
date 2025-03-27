@@ -1,5 +1,5 @@
 # Algorithm tester
-This is a C program design to test the effiency and compare de number of operations performed of 4 algorithms: Bubble Sort, Bubble Sort Optimized, Selection Sort and Select Sort in intege arrays.
+This is a C program design to test the effiency and compare de number of operations performed of 4 algorithms: Bubble Sort, Bubble Sort Optimized, Selection Sort and Insetion Sort in intege arrays.
 The program will then create an array using the two macros: SIZE and ORDER.
 ORDER is the order of the array generated (0 for ascending, 1 for descending)
 SIZE if the size of the array alocated
@@ -20,7 +20,7 @@ To compile que program use -D flag to set the macros values as so:
 ```bash
 gcc main.c algos.c array_aux.c -DSIZE=10 -DORDER=1
 ```
-And that's is! Now just execute.
+And that's it! Now just execute.
 ```bash
 ./a.out
 ```
