@@ -1,6 +1,6 @@
 #include "lab02.h"
 
-// Simple swap function to assist the sorts
+// Simple swap function to assist the sorts, adding the swap count
 static void swap(int *a, int *b, int *troca)
 {
 	int temp = *a;
@@ -21,9 +21,9 @@ static void swap(int *a, int *b, int *troca)
  */
 void	bubble_sort(int arr[], int n, int *troca, int *comp)
 {
-	for (int i = 0; (*comp)++, i < n - 1; i++)
+	for (int i = 0; i < n - 1; i++)
 	{
-		for (int j = 0; (*comp)++, j < n - i - 1; j++)
+		for (int j = 0; j < n - i - 1; j++)
 		{
 			if ((*comp)++, arr[j] > arr[j + 1])
 				swap(&arr[j], &arr[j + 1], troca);
@@ -45,10 +45,10 @@ void	bubble_sort(int arr[], int n, int *troca, int *comp)
 void	bubble_sort_opt(int arr[], int n, int *troca, int *comp)
 {
 	int swapped = 0;
-	for (int i = 0; (*comp)++, i < n - 1; i++)
+	for (int i = 0; i < n - 1; i++)
 	{
 		swapped = 0;
-		for (int j = 0; (*comp)++, j < n - i - 1; j++)
+		for (int j = 0; j < n - i - 1; j++)
 		{
 			if ((*comp)++, arr[j] > arr[j + 1])
 			{
@@ -56,7 +56,7 @@ void	bubble_sort_opt(int arr[], int n, int *troca, int *comp)
 				swapped = 1;
 			}
 		}
-		if ((*comp)++, swapped == 0)
+		if (!swapped)
 			break;
 	}
 }
@@ -75,15 +75,15 @@ void	selection_sort(int arr[], int n, int *troca, int *comp)
 {
 	int min_index = 0;
 
-	for (int i = 0; (*comp)++, i < n - 2; i++)
+	for (int i = 0; i < n - 2; i++)
 	{
 		min_index = i;
-		for (int j = i + 1; (*comp)++, j < n; j++)
+		for (int j = i + 1; j < n; j++)
 		{
 			if ((*comp)++, arr[j] < arr[min_index])
 				min_index = j;
 		}
-		if ((*comp)++, min_index != i)
+		if (min_index != i)
 			swap(&arr[min_index], &arr[i], troca);
 	}
 }
@@ -102,10 +102,10 @@ void	selection_sort(int arr[], int n, int *troca, int *comp)
 void	insertion_sort(int arr[], int n, int *troca, int *comp)
 {
 	int j = 1;
-	for (int i = 1; (*comp)++, i < n; i++)
+	for (int i = 1; i < n; i++)
 	{
 		j = i;
-		while ((*comp)++, j > 0 && (*comp)++, arr[j] < arr[j - 1])
+		while (j > 0 && (*comp)++, arr[j] < arr[j - 1])
 		{
 			swap(&arr[j], &arr[j - 1], troca);
 			j--;
