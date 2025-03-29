@@ -7,7 +7,7 @@
 # include <math.h>
 # include <unistd.h>
 
-typedef struct t_algos
+typedef struct algos
 {
 	char *name;
 	void (*function)(int *, int, int *, int *);
@@ -16,11 +16,11 @@ typedef struct t_algos
 /* ----- Modifiable Macros ----- */
 
 # ifndef ORDER
-#  define ORDER 2 // 0 for ascending, 1 for descending, 2 for random
+#  define ORDER 0 // 0 for ascending, 1 for descending, 2 for random
 # endif
 
 # ifndef SIZE
-#  define SIZE 10 // size of the array
+#  define SIZE 4 // size of the array
 # endif
 
 /* ----- Non-Modfiable Macros ----- */
