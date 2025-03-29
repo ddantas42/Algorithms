@@ -7,28 +7,50 @@
 # include <math.h>
 # include <unistd.h>
 
+typedef struct t_algos
+{
+	char *name;
+	void (*function)(int *, int, int *, int *);
+} t_algos;
+
+/* ----- Modifiable Macros ----- */
+
+# ifndef ORDER
+#  define ORDER 2 // 0 for ascending, 1 for descending, 2 for random
+# endif
+
+# ifndef SIZE
+#  define SIZE 10 // size of the array
+# endif
+
+/* ----- Non-Modfiable Macros ----- */
+
 /* Monotonic system-wide clock.  */
 # ifndef CLOCK_MONOTONIC
 #  define CLOCK_MONOTONIC 1
 # endif
 
-# ifndef ORDER
-#  define ORDER 1 // 0 for ascending, 1 for descending
-# endif
-
-# ifndef SIZE
-#  define SIZE 1e3 // size of the array
-# endif
+# define ASCENDING 0
+# define DESCENDING 1
+# define RANDOM 2
 
 /*	array_aux.c */
+int		copy_array(int *src, int **dest);
 int		is_sorted(int *arr);
 int *	generate_array();
 void	print_array(int *arr);
 
 /*	Algothims	*/
+void	swap(int *a, int *b, int *troca);
+
 void	bubble_sort(int arr[], int n, int *troca, int *comp);
+
 void	bubble_sort_opt(int arr[], int n, int *troca, int *comp);
+void	bubble_sort_opt_v2(int arr[], int n, int *troca, int *comp);
+
 void	selection_sort(int arr[], int n, int *troca, int *comp);
+void	selection_sort_v2(int arr[], int n, int *troca, int *comp);
+
 void	insertion_sort(int arr[], int n, int *troca, int *comp);
 
 #endif

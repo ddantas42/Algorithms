@@ -25,22 +25,44 @@ static void	run_algorithm(int *arr, void (*algorithm)(int *, int, int *, int *))
 		printf("Array sorted\n");
 	else
 		printf("Array not sorted\n");
+	print_array(arr);
 	
+}
+
+static int sizeof_algos(t_algos *algos)
+{
+	int i = 0;
+	while (algos[i].name != NULL)
+		i++;
+	return (i);
 }
 
 int main()
 {
-	int *arr = NULL;
-	void (*functions[4])(int *, int, int *, int *) = {&bubble_sort, &bubble_sort_opt, &selection_sort, &insertion_sort};
-	char *names[4] = {"Bubble Sort", "Bubble Sort Optimized", "Selection Sort", "Insertion Sort"};
+	int *arr = generate_array(ORDER);
+	t_algos algos[] = {
+		{"Bubble Sort", &bubble_sort},
+		{"Bubble Sort Optimized", &bubble_sort_opt},
+		{"Bubble Sort Optimized V2", &bubble_sort_opt_v2},
+		{"Selection Sort", &selection_sort},
+		{"Selection Sort V2", &selection_sort_v2},
+		{"Insertion Sort", &insertion_sort},
+		{NULL, NULL} // End of the array
+	};
+	int algos_size = sizeof_algos(algos);
+	int *arr_copy = NULL;
 
-	for (int i = 0; i < 4; i++)
+	print_array(arr);
+
+	for (int i = 0; i < algos_size; i++)
 	{
-		printf("\n---- %s ----\n", names[i]);
-		arr = generate_array();
-		run_algorithm(arr, functions[i]);
-		free(arr);
+		printf("\n---- %s ----\n", algos[i].name);
+		copy_array(arr, &arr_copy);
+		run_algorithm(arr_copy, algos[i].function);
+		free(arr_copy);
+		arr_copy = NULL;
 	}
+	free(arr);
 
 	return (0);
 }
