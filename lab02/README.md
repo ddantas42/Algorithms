@@ -9,9 +9,9 @@ So for example, an ORDER of 1 and SIZE of 5 will generate the following array:
 ```
 
 ## Usage
-To compile que program, simple use a C compiler and the source files (*.c) as arguments.
+To compile que program, simply use ```make``` so the programs compiles and generates an executable called "algos"
 ```bash
-gcc main.c algos.c array_aux.c
+make all
 ```
 Although, there's is two ways to use the program.\
 No extra flags means the program will use the values of the macros SIZE and ORDER that are in the lab02.h file
