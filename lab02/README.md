@@ -1,5 +1,5 @@
 # Algorithm tester
-This is a C program design to test the effiency and compare de number of operations performed of 6 algorithms: Bubble Sort, 2x Bubble Sort Optimized, 2x Selection Sort and Insetion Sort in intege arrays.
+This is a C program design to test the effiency and compare de number of operations performed of 5 algorithms: Bubble Sort, 2x Bubble Sort Optimize, Selection Sort and Insetion Sort in intege arrays.
 The program will then create an array using the two macros: ```SIZE``` and ```ORDER```.
 ORDER is the order of the array generated (0 for ascending, 1 for descending, 2 for random)
 SIZE is the size of the array alocated
@@ -20,6 +20,3 @@ And that's it! now simply execute
 
 ## Customization
 If you wish to add your own algorithms, or filter the output, simply comment or alter the function the structure on main calls
-
-### Clarification regarding v2 algorithms
-The v1 algorithms are directly copied from pseudocode the teacher, I decided to implement my own v2 to try and make Bubble sort better, and Selection Sort working. 
