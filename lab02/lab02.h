@@ -14,14 +14,8 @@ typedef struct algos
 } t_algos;
 
 /* ----- Modifiable Macros ----- */
-
-# ifndef ORDER
 #  define ORDER 0 // 0 for ascending, 1 for descending, 2 for random
-# endif
-
-# ifndef SIZE
 #  define SIZE 4 // size of the array
-# endif
 
 /* ----- Non-Modfiable Macros ----- */
 

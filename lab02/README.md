@@ -20,3 +20,6 @@ And that's it! now simply execute
 
 ## Customization
 If you wish to add your own algorithms, or filter the output, simply comment or alter the function the structure on main calls
+
+### PS
+Selection Sort is expected not to work with random interegers

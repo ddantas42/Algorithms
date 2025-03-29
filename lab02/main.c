@@ -1,5 +1,19 @@
 #include "lab02.h"
 
+// Simple function to print the stats of the algorithm
+static void	print_stats(int *arr, int time_ns, int swaps, int comparisons)
+{
+	printf("time elapsed: %ld nano seconds \n", time_ns);
+	printf("swaps: %d\n", swaps);
+	printf("comparisons: %d\n", comparisons);
+
+	if (is_sorted(arr) == 1)
+		printf("Array sorted\n");
+	else
+		printf("Array not sorted\n");
+
+}
+
 /**
  * Runs the algorithm and prints the time elapsed and the index of the element
  * @param arr   Array to search the index
@@ -17,16 +31,9 @@ static void	run_algorithm(int *arr, void (*algorithm)(int *, int, int *, int *))
 	algorithm(arr, SIZE, &swaps, &comparisons);
 	clock_gettime(CLOCK_MONOTONIC, &end);
 	
-	long ns = (end.tv_sec - start.tv_sec) * 1e9 + (end.tv_nsec - start.tv_nsec);
-	printf("time elapsed: %ld nano seconds \n", ns);
-	printf("swaps: %d\n", swaps);
-	printf("comparisons: %d\n", comparisons);
-	if (is_sorted(arr))
-		printf("Array sorted\n");
-	else
-		printf("Array not sorted\n");
+	long time_ns = (end.tv_sec - start.tv_sec) * 1e9 + (end.tv_nsec - start.tv_nsec);
+	print_stats(arr, time_ns, swaps, comparisons);
 	// print_array(arr);
-	
 }
 
 static int sizeof_algos(t_algos *algos)

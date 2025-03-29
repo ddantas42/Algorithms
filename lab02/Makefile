@@ -5,6 +5,7 @@ CC = gcc
 EXECUTABLE = algos
 
 all: $(EXECUTABLE)
+
 $(EXECUTABLE): $(OBJ)
 	$(CC) -o $@ $^
 
