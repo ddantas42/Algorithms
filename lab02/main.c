@@ -51,7 +51,6 @@ int main()
 		{"Bubble Sort Optimized", &bubble_sort_opt},
 		{"Bubble Sort Optimized V2", &bubble_sort_opt_v2},
 		{"Selection Sort", &selection_sort},
-		{"Selection Sort V2", &selection_sort_v2},
 		{"Insertion Sort", &insertion_sort},
 		{NULL, NULL} // End of the array, keep this at the end always if you modify the struct
 	};

@@ -115,34 +115,6 @@ void	selection_sort(int arr[], int n, int *troca, int *comp)
 {
 	int min_index = 0;
 
-	for (int i = 0; i < n - 2; i++)
-	{
-		min_index = i;
-		for (int j = i + 1; j < n - 1; j++)
-		{
-			if ((*comp)++, arr[j] < arr[min_index])
-				min_index = j;
-		}
-		if (min_index != i)
-			swap(&arr[min_index], &arr[i], troca);
-	}
-}
-
-/**
- * Selection sort will go through the array n times, selecting the smallest element
- * and swapping it with the first element of the array.
- * This process is repeated n times, until the array is sorted.
- * This version is trying to fix the above algorithm
- * O(n^2)
- * @param arr[] - array to be sorted
- * @param n - size of the array
- * @param troca - number of swaps
- * @param comp - number of comparisons
- */
-void	selection_sort_v2(int arr[], int n, int *troca, int *comp)
-{
-	int min_index = 0;
-
 	for (int i = 0; i < n - 1; i++)
 	{
 		min_index = i;

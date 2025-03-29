@@ -43,7 +43,6 @@ void	bubble_sort_opt(int arr[], int n, int *troca, int *comp);
 void	bubble_sort_opt_v2(int arr[], int n, int *troca, int *comp);
 
 void	selection_sort(int arr[], int n, int *troca, int *comp);
-void	selection_sort_v2(int arr[], int n, int *troca, int *comp);
 
 void	insertion_sort(int arr[], int n, int *troca, int *comp);
 
