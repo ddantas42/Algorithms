@@ -46,7 +46,6 @@ static int sizeof_algos(t_algos *algos)
 
 int main()
 {
-	int *arr = generate_array(ORDER);
 	t_algos algos[] = { // If you want to test your own, just add it here or comment others to filter the output
 		{"Bubble Sort", &bubble_sort},
 		{"Bubble Sort Optimized", &bubble_sort_opt},
@@ -57,10 +56,11 @@ int main()
 		{NULL, NULL} // End of the array, keep this at the end always if you modify the struct
 	};
 	int algos_size = sizeof_algos(algos);
+	
+	int *arr = generate_array(ORDER);
 	int *arr_copy = NULL;
 
 	print_array(arr);
-
 	for (int i = 0; i < algos_size; i++)
 	{
 		printf("\n---- %s ----\n", algos[i].name);
