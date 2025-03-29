@@ -21,5 +21,5 @@ And that's it! now simply execute
 ## Customization
 If you wish to add your own algorithms, or filter the output, simply comment or alter the function the structure on main calls
 
-### PS
-Selection Sort is expected not to work with random interegers, since it misses the last tin
+### Clarification regarding v2 algorithms
+The v1 algorithms are directly copied from pseudocode the teacher, I decided to implement my own v2 to try and make Bubble sort better, and Selection Sort working. 
