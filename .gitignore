@@ -3,3 +3,4 @@
 **/*.docx
 **/.vscode/
 **/*.o
+**/algos
