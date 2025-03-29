@@ -27,10 +27,7 @@ void	bubble_sort(int arr[], int n, int *troca, int *comp)
 		for (int j = 0; j < n - i - 1; j++)
 		{
 			if ((*comp)++, arr[j] > arr[j + 1])
-			{
 				swap(&arr[j], &arr[j + 1], troca);
-				print_array(arr);
-			}
 		}
 	}
 }
@@ -135,7 +132,7 @@ void	selection_sort(int arr[], int n, int *troca, int *comp)
  * Selection sort will go through the array n times, selecting the smallest element
  * and swapping it with the first element of the array.
  * This process is repeated n times, until the array is sorted.
- * This version is trying to fix the above algorithm, since for random arrays it does not sort them
+ * This version is trying to fix the above algorithm
  * O(n^2)
  * @param arr[] - array to be sorted
  * @param n - size of the array
