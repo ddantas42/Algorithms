@@ -22,4 +22,4 @@ And that's it! now simply execute
 If you wish to add your own algorithms, or filter the output, simply comment or alter the function the structure on main calls
 
 ### PS
-Selection Sort is expected not to work with random interegers
+Selection Sort is expected not to work with random interegers, since it misses the last tin

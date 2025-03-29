@@ -1,7 +1,7 @@
 #include "lab02.h"
 
 // Simple function to print the stats of the algorithm
-static void	print_stats(int *arr, int time_ns, int swaps, int comparisons)
+static void	print_stats(int *arr, long time_ns, int swaps, int comparisons)
 {
 	printf("time elapsed: %ld nano seconds \n", time_ns);
 	printf("swaps: %d\n", swaps);
@@ -59,7 +59,7 @@ int main()
 	int algos_size = sizeof_algos(algos);
 	int *arr_copy = NULL;
 
-	// print_array(arr);
+	print_array(arr);
 
 	for (int i = 0; i < algos_size; i++)
 	{

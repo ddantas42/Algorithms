@@ -15,7 +15,7 @@ typedef struct algos
 
 /* ----- Modifiable Macros ----- */
 #  define ORDER 0 // 0 for ascending, 1 for descending, 2 for random
-#  define SIZE 4 // size of the array
+#  define SIZE 1e3 // size of the array
 
 /* ----- Non-Modfiable Macros ----- */
 
