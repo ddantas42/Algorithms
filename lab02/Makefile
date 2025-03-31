@@ -1,4 +1,7 @@
-SRC = main.c algos.c array_aux.c
+SRCPATH = src/
+SRC_FILES = main.c algos.c array_aux.c
+SRC = $(addprefix $(SRCPATH), $(SRC_FILES))
+
 OBJ = $(SRC:.c=.o)
 CC = gcc
 

@@ -1,4 +1,4 @@
-#include "lab02.h"
+#include "../inc/lab02.h"
 
 int copy_array(int *src, int **dest)
 {

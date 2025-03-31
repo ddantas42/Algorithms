@@ -1,4 +1,4 @@
-#include "lab02.h"
+#include "../inc/lab02.h"
 
 // Simple swap function to assist the sorts, adding the swap count
 void	swap(int *a, int *b, int *troca)
