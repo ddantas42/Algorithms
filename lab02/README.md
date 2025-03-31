@@ -19,4 +19,5 @@ And that's it! now simply execute
 ```
 
 ## Customization
-If you wish to add your own algorithms, or filter the output, simply comment or alter the function the structure on main calls
+If you wish to add your own algorithms, or filter the output, simply comment or alter the function on the structure on main calls.
+The ```ORDER``` and ```SIZE``` macros can be defined on the inc/lab02.h file
