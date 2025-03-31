@@ -18,6 +18,9 @@ And that's it! now simply execute
 ./algos
 ```
 
+After you can use ```make clean``` to clean every object and the executable created.
+To clean and recompile you can use ```make re```.
+
 ## Customization
 If you wish to add your own algorithms, or filter the output, simply comment or alter the function on the structure on main calls.
 The ```ORDER``` and ```SIZE``` macros can be defined on the inc/lab02.h file
