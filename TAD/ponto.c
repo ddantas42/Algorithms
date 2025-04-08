@@ -1,11 +1,11 @@
 #include "ponto.h"
 
-void	imprimir_ponto(Ponto *P)
+void	P_imprimir_ponto(Ponto *P)
 {
 	printf("Ponto: (%.2f, %.2f)\n", P->x, P->y);
 }
 
-void	ler_ponto(Ponto *P)
+void	P_ler_ponto(Ponto *P)
 {
 	printf("Digite as coordenadas do ponto (x,y):\n");
 	printf("x: ");
@@ -14,7 +14,7 @@ void	ler_ponto(Ponto *P)
 	scanf("%f", &P->y);
 }
 
-Ponto	somar_pontos(Ponto *P1, Ponto *P2)
+Ponto	P_somar_pontos(Ponto *P1, Ponto *P2)
 {
 	Ponto soma;
 	soma.x = P1->x + P2->x;
@@ -22,14 +22,14 @@ Ponto	somar_pontos(Ponto *P1, Ponto *P2)
 	return soma;
 }
 
-float 	calcular_distancia(Ponto *P1, Ponto *P2)
+float 	P_calcular_distancia(Ponto *P1, Ponto *P2)
 {
 	float dx = P2->x - P1->x;
 	float dy = P2->y - P1->y;
 	return sqrt(dx * dx + dy * dy);
 }
 
-void	espelhar(Ponto *P)
+void	P_espelhar(Ponto *P)
 {
 	float temp = P->x;
 	P->x = P->y;
@@ -37,7 +37,7 @@ void	espelhar(Ponto *P)
 	printf("Ponto espelhado: (%f, %f)\n", P->x, P->y);
 }
 
-Ponto	ponto_medio(Ponto *P1, Ponto *P2)
+Ponto	P_ponto_medio(Ponto *P1, Ponto *P2)
 {
 	Ponto meio;
 	meio.x = (P1->x + P2->x) / 2;
@@ -45,7 +45,7 @@ Ponto	ponto_medio(Ponto *P1, Ponto *P2)
 	return meio;
 }
 
-Ponto	ponto_medio_varios(Ponto **P)
+Ponto	P_ponto_medio_varios(Ponto **P)
 {
 	Ponto	meio;
 	int		n = 0;
