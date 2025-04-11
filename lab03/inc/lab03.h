@@ -46,7 +46,7 @@ int		copy_array_pos(int *src, int **dest, int start, int end);
 int		copy_array(int *src, int **dest, int size);
 int		is_sorted(int *arr);
 int *	generate_array();
-void	print_array(int *arr);
+void	print_array(int *arr, int size);
 
 
 /*	Algothims	*/

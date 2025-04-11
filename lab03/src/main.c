@@ -12,7 +12,7 @@ static void	print_stats(int *arr, long time_ns, int swaps, int comparisons)
 	else
 	{
 		printf("Array not sorted\n");
-		print_array(arr);
+		print_array(arr, SIZE);
 	}
 
 }
@@ -60,7 +60,7 @@ int main()
 	int *arr = generate_array(ORDER);
 	int *arr_copy = NULL;
 
-	print_array(arr);
+	print_array(arr, SIZE);
 	for (int i = 0; i < algos_size; i++)
 	{
 		printf("\n---- %s ----\n", algos[i].name);

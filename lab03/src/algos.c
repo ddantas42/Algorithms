@@ -8,16 +8,22 @@ void	swap(int *a, int *b, int *troca)
 	*b = temp;
 	if (troca != NULL)
 		(*troca)++;
+	printf("swap: %d <-> %d\n", *a, *b);
+}
+
+static void DumpArray(int *dest, int *arr, int int start, int end)
+{
+	for (int i = start; i <= end; i++)
+		dest[i] = arr[i];
 }
 
 static void	merge(int *arr,  t_pos *pos, t_count *count)
 {
-	int *copy_left = NULL;
-	int *copy_right = NULL;
+	int *left_side = NULL;
+	int *right_side = NULL;
 	int index_left, index_right;
 	int size_left = pos->mid - pos->start + 1;
 	int size_right = pos->end - pos->mid;
-	int biggest_size;
 
 	printf("merge(arr, start = %d, mid = %d, end = %d)\n", pos->start, pos->mid, pos->end);
 
@@ -25,22 +31,30 @@ static void	merge(int *arr,  t_pos *pos, t_count *count)
 		return ;
 
 	// Create 2 Sub arrays
-	print_array(arr);
-	copy_array_pos(arr, &copy_left, pos->start, pos->mid);
-	copy_array_pos(arr, &copy_right, pos->mid + 1, pos->end);
-	printf("Left: "), print_array(copy_left);
-	printf("Right: "), print_array(copy_right);
+	print_array(arr, SIZE);
+	copy_array_pos(arr, &left_side, pos->start, pos->mid);
+	copy_array_pos(arr, &right_side, pos->mid + 1, pos->end);
+	printf("Left: "), print_array(left_side, size_left);
+	printf("Right: "), print_array(right_side, size_right);
 
 	index_left = 0;
 	index_right = 0;
-	for (int index_merged = pos->start; index_merged < pos->end; index_merged++)
+	for (int index_merged = pos->start; \
+		index_merged < pos->end && \
+		index_left < size_left && \
+		index_right < size_right; index_merged++)
 	{
-		if (count->comp++, size_right != index_right && size_left != index_left && copy_right[index_right] >= copy_left[index_left])
-			arr[index_merged] = copy_left[index_left++];
+		if (left_side[index_left] <= right_side[index_right])
+			swap(&arr[index_merged], &left_side[index_left++], &count->swaps);
 		else
-			arr[index_merged] = copy_right[index_right++];
+			swap(&arr[index_merged], &right_side[index_right++], &count->swaps);
 	}
-
+	printf("After merge "), print_array(arr, SIZE);
+	printf("Left: "), print_array(left_side, size_left);
+	printf("Right: "),print_array(right_side, size_right);
+	// Free the memory allocated for the sub arrays
+	free(left_side);
+	free(right_side);
 }
 
 /**
