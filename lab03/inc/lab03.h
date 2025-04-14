@@ -52,5 +52,6 @@ void	print_array(int *arr, int size);
 /*	Algothims	*/
 void	swap(int *a, int *b, int *troca);
 void	mergeSort(int *arr, t_pos *pos, t_count *count);
+void	quickSort(int *arr, t_pos *pos, t_count *count);
 
 #endif

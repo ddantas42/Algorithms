@@ -12,8 +12,8 @@ static void	print_stats(int *arr, long time_ns, int swaps, int comparisons)
 	else
 	{
 		printf("Array not sorted\n");
+		print_array(arr, SIZE);
 	}
-	print_array(arr, SIZE);
 
 }
 
@@ -53,6 +53,7 @@ int main()
 
 	t_algos algos[] = { // If you want to test your own, just add it here or comment others to filter the output
 		{"Merge Sort", &mergeSort},
+		{"Quick Sort", &quickSort},
 		{NULL, NULL} // End of the array, keep this at the end always if you modify the struct
 	};
 	int algos_size = sizeof_algos(algos);

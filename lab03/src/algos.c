@@ -36,15 +36,16 @@ static void	merge(int *arr,  t_pos *pos, t_count *count)
 			arr[index_merged++] = left_side[index_left++];
 		else
 			arr[index_merged++] = right_side[index_right++];
+		count->swaps++;
 	}
 	
 	// Copy the remaining elements of left_side, if any
 	while (index_left < size_left)
-		arr[index_merged++] = left_side[index_left++];
+		arr[index_merged++] = left_side[index_left++], count->swaps++;
 
 	// Copy the remaining elements of right_side, if any
 	while (index_right < size_right)
-		arr[index_merged++] = right_side[index_right++];
+		arr[index_merged++] = right_side[index_right++], count->swaps++;
 		
 	free(left_side);
 	free(right_side);
@@ -68,5 +69,32 @@ void		mergeSort(int *arr, t_pos *pos, t_count *count)
 		mergeSort(arr, &left, count);
 		mergeSort(arr, &right, count);
 		merge(arr, pos, count);
+	}
+}
+
+static int	partition(int *arr, t_pos *pos, t_count *count)
+{
+	int pivot = arr[pos->end];
+	int i = pos->start - 1;
+
+	for (int j = pos->start; j < pos->end; j++)
+	{
+		if (count->comp++, arr[j] <= pivot)
+			swap(&arr[++i], &arr[j], &count->swaps);
+	}
+	swap(&arr[i + 1], &arr[pos->end], &count->swaps);
+	return (i + 1);
+}
+
+void	quickSort(int *arr, t_pos *pos, t_count *count)
+{
+	if (pos->start < pos->end)
+	{
+		int pivot = partition(arr, pos, count);
+		t_pos left = {pos->start, 0, pivot - 1};
+		t_pos right = {pivot + 1, 0, pos->end};
+
+		quickSort(arr, &left, count);
+		quickSort(arr, &right, count);
 	}
 }
