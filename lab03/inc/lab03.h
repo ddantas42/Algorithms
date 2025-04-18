@@ -27,8 +27,8 @@ typedef struct algos
 } t_algos;
 
 /* ----- Modifiable Macros ----- */
-#  define ORDER 2 // 0 for ascending, 1 for descending, 2 for random
-#  define SIZE 100 // size of the array
+#  define ORDER 2	// 0 for ascending, 1 for descending, 2 for random
+#  define SIZE 100	// size of the array
 
 /* ----- Non-Modfiable Macros ----- */
 
