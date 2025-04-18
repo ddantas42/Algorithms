@@ -1,6 +1,14 @@
 #include "../inc/lab03.h"
 
-int copy_array_pos(int *src, int **dest, int start, int end)
+
+/**
+ * copies the array from src to dest from start to end
+ * @param src  The source array
+ * @param dest  The destination array
+ * @param start  The starting index
+ * @param end  The ending index
+*/
+void	copy_array_pos(int *src, int **dest, int start, int end)
 {
 	*dest = (int *)malloc((end - start + 1) * sizeof(int));
 	if (*dest == NULL)
@@ -12,11 +20,15 @@ int copy_array_pos(int *src, int **dest, int start, int end)
 	}
 	for (int i = start; i <= end; i++)
 		(*dest)[i - start] = src[i];
-
-	return (0);
 }
 
-int copy_array(int *src, int **dest, int size)
+/**
+ * Copies the array from one array to another
+ * @param src  The source array
+ * @param dest  The destination array
+ * @param size  The size of the array to copy
+*/
+void	copy_array(int *src, int **dest, int size)
 {
 	*dest = (int *)malloc(size * sizeof(int));
 	if (*dest == NULL)

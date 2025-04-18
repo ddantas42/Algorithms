@@ -11,6 +11,13 @@ void	swap(int *a, int *b, int *troca)
 	// printf("swap: %d <-> %d\n", *a, *b);
 }
 
+/**
+ * Merges two subarrays into the array passed organizing them
+ * @param arr  The array to sort
+ * @param pos  The position of the array to sort (start, mid, end)
+ * @param count  The count of comparisons and swaps (comp, swap)
+*/
+
 static void	merge(int *arr,  t_pos *pos, t_count *count)
 {
 	int *left_side = NULL;
@@ -72,6 +79,15 @@ void		mergeSort(int *arr, t_pos *pos, t_count *count)
 	}
 }
 
+/**
+ * Partitions the array using the last element as pivot
+ * Then puts all elements smaller than the pivot to the left and all elements
+ * greater than the pivot to the right
+ * @param arr  The array to sort
+ * @param pos  The position of the array to sort (start, mid, end)
+ * @param count  The count of comparisons and swaps (comp, swap)
+ * @return  The index of the pivot
+*/
 static int	partition(int *arr, t_pos *pos, t_count *count)
 {
 	int pivot = arr[pos->end];
@@ -86,6 +102,12 @@ static int	partition(int *arr, t_pos *pos, t_count *count)
 	return (i + 1);
 }
 
+/**
+ * Will sort the array using QuickSort
+ * @param arr  The array to sort
+ * @param pos  The position of the array to sort (start, mid, end)
+ * @param count  The count of comparisons and swaps (comp, swap)
+ */
 void	quickSort(int *arr, t_pos *pos, t_count *count)
 {
 	if (pos->start < pos->end)

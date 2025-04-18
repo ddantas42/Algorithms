@@ -4,16 +4,17 @@ SRC = $(addprefix $(SRCPATH), $(SRC_FILES))
 
 OBJ = $(SRC:.c=.o)
 CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
 EXECUTABLE = algos
 
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJ)
-	$(CC) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.c
-	$(CC) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 	
 clean:
 	rm -f $(OBJ) $(EXECUTABLE)
