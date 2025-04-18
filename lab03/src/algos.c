@@ -95,9 +95,14 @@ static int	partition(int *arr, t_pos *pos, t_count *count)
 
 	for (int j = pos->start; j < pos->end; j++)
 	{
+		// check if the current element is less than or equal to the pivot
 		if (count->comp++, arr[j] <= pivot)
 			swap(&arr[++i], &arr[j], &count->swaps);
 	}
+	
+	// swap the pivot element with the element at index i + 1
+	// so that all elements smaller than the pivot are to the left
+	// and all elements greater than the pivot are to the right
 	swap(&arr[i + 1], &arr[pos->end], &count->swaps);
 	return (i + 1);
 }
@@ -107,7 +112,7 @@ static int	partition(int *arr, t_pos *pos, t_count *count)
  * @param arr  The array to sort
  * @param pos  The position of the array to sort (start, mid, end)
  * @param count  The count of comparisons and swaps (comp, swap)
- */
+*/
 void	quickSort(int *arr, t_pos *pos, t_count *count)
 {
 	if (pos->start < pos->end)

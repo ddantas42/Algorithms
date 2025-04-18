@@ -1,5 +1,5 @@
 #ifndef LAB03_H
-#define LAB03_H
+# define LAB03_H
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -28,7 +28,7 @@ typedef struct algos
 
 /* ----- Modifiable Macros ----- */
 #  define ORDER 2	// 0 for ascending, 1 for descending, 2 for random
-#  define SIZE 100	// size of the array
+#  define SIZE 1000	// size of the array
 
 /* ----- Non-Modfiable Macros ----- */
 

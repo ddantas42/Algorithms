@@ -1,5 +1,5 @@
 # Algorithm tester
-This is a C program design to test the effiency and compare de number of operations performed of 5 algorithms: Bubble Sort, 2x Bubble Sort Optimized, Selection Sort and Insetion Sort in intege arrays.
+This is a C program design to test the effiency and compare de number of operations performed of 2 algorithms: Merge Sort and Quick Sort in intege arrays.
 The program will then create an array using the two macros: ```SIZE``` and ```ORDER```.
 ORDER is the order of the array generated (0 for ascending, 1 for descending, 2 for random)
 SIZE is the size of the array alocated
@@ -23,4 +23,7 @@ To clean and recompile you can use ```make re```.
 
 ## Customization
 If you wish to add your own algorithms, or filter the output, simply comment or alter the function on the structure on main calls.
-The ```ORDER``` and ```SIZE``` macros can be defined on the inc/lab02.h file
+The ```ORDER``` and ```SIZE``` macros can be defined on the inc/lab03.h file
+
+## Extra test
+The source file qsort.c is not included in the main execution of the program, is a standalone program which tests the effiency of QSort by math.h library, which is a version of Quick Sort. You can modify the code on the main function to get your desire array sizes.
