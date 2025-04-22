@@ -1,4 +1,4 @@
-#include "ponto.h"
+#include "../inc/ponto.h"
 
 void	P_imprimir_ponto(Ponto *P)
 {
@@ -65,3 +65,4 @@ Ponto	P_ponto_medio_varios(Ponto **P)
 	meio.y /= n;
 	return meio;
 }
+

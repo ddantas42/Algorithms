@@ -1,10 +1,7 @@
 #ifndef PONTO_H
 # define PONTO_H
 
-# include <stdio.h>
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
+# include "general.h"
 
 typedef struct ponto
 {

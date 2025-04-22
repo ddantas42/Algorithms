@@ -1,31 +1,4 @@
-#include "ponto.h"
-
-void ler_ponto();
-void imprimir_pontos(Ponto *P1, Ponto *P2, Ponto *P3);
-void somar_pontos_test(Ponto *P1, Ponto *P2, Ponto *P3);
-void calcular_distancia_test(Ponto *P1, Ponto *P2, Ponto *P3);
-void espelhar_ponto_test(Ponto *P1);
-void ponto_medio_test(Ponto *P1, Ponto *P2);
-void ponto_medio_varios_test(Ponto *P1, Ponto *P2, Ponto *P3);
-
-int main()
-{
-	Ponto P1, P2, P3;
-
-	ler_ponto(&P1, &P2, &P3);
-	imprimir_pontos(&P1, &P2, &P3);
-	somar_pontos_test(&P1, &P2, &P3);
-	calcular_distancia_test(&P1, &P2, &P3);
-	espelhar_ponto_test(&P1);
-	ponto_medio_test(&P1, &P2);
-	ponto_medio_varios_test(&P1, &P2, &P3);
-
-	printf("---- Fim dos testes ----\n");
-	printf("Pressione Enter para sair...");
-	getchar();
-	getchar();
-	return 0;
-}
+#include "../inc/ponto.h"
 
 void ler_ponto(Ponto *P1, Ponto *P2, Ponto *P3)
 {
@@ -87,4 +60,23 @@ void ponto_medio_varios_test(Ponto *P1, Ponto *P2, Ponto *P3)
 	Ponto meio_varios = P_ponto_medio_varios(pontos);
 	printf("Ponto medio entre Ponto 1, Ponto 2 e Ponto 3: ");
 	P_imprimir_ponto(&meio_varios);
+}
+
+int main()
+{
+	Ponto P1, P2, P3;
+
+	ler_ponto(&P1, &P2, &P3);
+	imprimir_pontos(&P1, &P2, &P3);
+	somar_pontos_test(&P1, &P2, &P3);
+	calcular_distancia_test(&P1, &P2, &P3);
+	espelhar_ponto_test(&P1);
+	ponto_medio_test(&P1, &P2);
+	ponto_medio_varios_test(&P1, &P2, &P3);
+
+	printf("---- Fim dos testes ----\n");
+	printf("Pressione Enter para sair...");
+	getchar();
+	getchar();
+	return 0;
 }
