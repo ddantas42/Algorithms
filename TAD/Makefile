@@ -1,7 +1,7 @@
 
 SRCPATH = src/
 
-SRCFILES = ponto.c circulo.c
+SRCFILES = ponto.c circulo.c lista.c
 OBJFILES = $(SRCFILES:.c=.o)
 
 EXECUTABLE = tad
