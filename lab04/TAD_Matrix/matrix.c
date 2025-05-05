@@ -102,62 +102,40 @@ int		mat_columns(Matrix *mat)
 	return mat->col;
 } 
 
-
-static int multiplications(int linha, int comum, int coluna) 
+static void print_mat(long **m, int n, int m_size)
 {
-	return linha * coluna * comum;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m_size; j++)
+		{
+			printf("%ld ", m[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\n");
 }
 
 /** 
- * Will return the order of multiplications the matrix should be multiplied 
- * for less computing efforts
- * @param Dim array with the dimensions of the matrix (without repeating columns)\n
-I.e A 8*4 * B 4*3 * C 3*5 = [8, 4, 3, 5]
- * @return an array with the order of multiplication
-I.e (A*B)*C = [0, 1, 2] | A*(B*C) = [0, 2, 1]
-  */
-// int		*mat_great_multiplication_order(int *Dim)
-// {
-// 	int multiplica1 = multiplications(Dim[0], Dim[1], Dim[2]);
-// 	int multiplica2 = multiplications(Dim[0], Dim[2], Dim[3]);
-// 	int total1 = multiplica1 + multiplica2;
-// 	printf("multiplica1 = %d\n", multiplica1);
-// 	printf("multiplica2 = %d\n", multiplica2);
-// 	printf("total1 = %d\n", total1);
-
-// 	multiplica1 = multiplications(Dim[1], Dim[2], Dim[3]);
-// 	multiplica2 = multiplications(Dim[0], Dim[1], Dim[3]);
-// 	int total2 = multiplica1 + multiplica2;
-
-// 	printf("multiplica1 = %d\n", multiplica1);
-// 	printf("multiplica2 = %d\n", multiplica2);
-// 	printf("total2 = %d\n", total2);
-	
-// 	int *order = (int *)malloc(3 * sizeof(int));
-// 	if (total1 < total2)
-// 		order[0] = 0, order[1] = 1, order[2] = 2;
-// 	else
-// 		order[0] = 1, order[1] = 2, order[2] = 0;
-		
-// 	return order;
-
-// }
-
-// Helper function to fill the DP tables
-void compute_optimal_order(int *Dim, int n, int **m, int **s) {
+ * Fills dynamic programming tables with minimum multiplication costs and split points
+ * @param Dim array with dimensions of the matrices [d0, d1, ..., dn]
+ * @param n number of matrices (n = length of Dim - 1)
+ * @param m table to store minimal multiplication costs from i to j
+ * @param s table to store optimal split index between matrix i and j
+ */
+static void compute_tables(int *Dim, int n, long **m, long **s)
+{
 	for (int i = 0; i < n; i++)
 		m[i][i] = 0;
 
-	for (int chain_len = 2; chain_len <= n; chain_len++)
+	for (int len = 2; len <= n; len++)
 	{
-		for (int i = 0; i <= n - chain_len; i++)
+		for (int i = 0; i <= n - len; i++)
 		{
-			int j = i + chain_len - 1;
-			m[i][j] = 999999999;
-
+			int j = i + len - 1;
+			m[i][j] = INT_MAX; // Initialize to a large value
 			for (int k = i; k < j; k++)
 			{
-				int cost = m[i][k] + m[k+1][j] + Dim[i] * Dim[k+1] * Dim[j+1];
+				long cost = m[i][k] + m[k + 1][j] + Dim[i] * Dim[k + 1] * Dim[j + 1]; // Cost of multiplying matrices i..k and k+1..j
 				if (cost < m[i][j])
 				{
 					m[i][j] = cost;
@@ -166,39 +144,90 @@ void compute_optimal_order(int *Dim, int n, int **m, int **s) {
 			}
 		}
 	}
+	print_mat(m, n, n);
+	print_mat(s, n, n);
 }
 
-// Recursive traversal to fill order array
-void build_order(int **s, int i, int j, int *order, int *pos) {
-	if (i == j)
-		return;
+/** 
+ * Builds the multiplication order from the split table using a loop-based simulation
+ * @param s split index table filled by compute_tables
+ * @param n number of matrices in the chain
+ * @return an array of length n - 1 indicating the split order (post-order traversal)
+ */
+static int *generate_order_from_s(long **s, int n)
+{
+	int *order = malloc((n - 1) * sizeof(int));
+	int top = -1;
 
-	int k = s[i][j];
-	build_order(s, i, k, order, pos);
-	build_order(s, k + 1, j, order, pos);
+	// Simulate a stack of [i, j] ranges to process
+	typedef struct { int i, j; int visited; } Frame;
+	Frame *stack = malloc(n * n * sizeof(Frame));
 
-	order[*pos] = k;
-	(*pos)++;
-}
+	stack[++top] = (Frame){0, n - 1, 0};
+	int pos = 0;
 
-// Main function to be called
-int *mat_great_multiplication_order(int *Dim, int num_matrices) {
-	int n = num_matrices;  // Number of matrices
-	int **m = malloc(n * sizeof(int *));
-	int **s = malloc(n * sizeof(int *));
-	for (int i = 0; i < n; i++) {
-		m[i] = malloc(n * sizeof(int));
-		s[i] = malloc(n * sizeof(int));
+	while (top >= 0)
+	{
+		Frame *curr = &stack[top];
+
+		if (curr->i == curr->j)
+		{
+			top--;  // Leaf matrix, no split
+			continue;
+		}
+
+		if (curr->visited == 0)
+		{
+			// Go left first
+			curr->visited = 1;
+			stack[++top] = (Frame){curr->i, s[curr->i][curr->j], 0};
+		}
+		else if (curr->visited == 1)
+		{
+			// Then go right
+			curr->visited = 2;
+			stack[++top] = (Frame){s[curr->i][curr->j] + 1, curr->j, 0};
+		}
+		else
+		{
+			// Then store the split
+			order[pos++] = s[curr->i][curr->j];
+			top--;
+		}
 	}
 
-	compute_optimal_order(Dim, n, m, s);
+	free(stack);
+	return order;
+}
 
-	int *order = malloc((n - 1) * sizeof(int));
-	int pos = 0;
-	build_order(s, 0, n - 1, order, &pos);
+/** 
+ * Will return the order of multiplications the matrix should be multiplied 
+ * for less computing efforts using dynamic programming
+ * @param Dim array with the dimensions of the matrices (without repeating columns)\n
+ * I.e A 8*4 * B 4*3 * C 3*5 = [8, 4, 3, 5]
+ * @return an array with the order of multiplication represented by split positions
+ * Each entry is the index (k) where the optimal multiplication splits the matrix chain\n
+ * I.e (A*B)*C = [0, 1] | A*(B*C) = [1, 0]
+ * The returned array has length n - 1, where n is the number of matrices
+ */
+int *mat_great_multiplication_order(int *Dim)
+{
+	int n = 0;
+	while (Dim[n + 1]) n++;  // Count matrices based on non-zero Dim entries
 
-	// Free DP tables
-	for (int i = 0; i < n; i++) {
+	long **m = (long **)malloc(n * sizeof(long *));
+	long **s = (long **)malloc(n * sizeof(long *));
+	for (long i = 0; i < n; i++)
+	{
+		m[i] = (long *)malloc(n * sizeof(long));
+		s[i] = (long *)malloc(n * sizeof(long));
+	}
+
+	compute_tables(Dim, n, m, s);
+	int *order = generate_order_from_s(s, n);
+
+	for (int i = 0; i < n; i++)
+	{
 		free(m[i]);
 		free(s[i]);
 	}
@@ -207,4 +236,3 @@ int *mat_great_multiplication_order(int *Dim, int num_matrices) {
 
 	return order;
 }
-

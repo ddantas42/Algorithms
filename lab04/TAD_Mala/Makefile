@@ -1,11 +1,11 @@
-SRC_FILES = main.c matrix.c
+SRC_FILES = main.c mala.c
 SRC = $(SRC_FILES)
 
 OBJ = $(SRC:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-EXECUTABLE = matrix
+EXECUTABLE = mala
 
 all: $(EXECUTABLE)
 
