@@ -102,13 +102,13 @@ int		mat_columns(Matrix *mat)
 	return mat->col;
 } 
 
-static void print_mat(long **m, int n, int m_size)
+static void print_mat(int **m, int n, int m_size)
 {
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < m_size; j++)
 		{
-			printf("%ld ", m[i][j]);
+			printf("%d ", m[i][j]);
 		}
 		printf("\n");
 	}
@@ -122,20 +122,21 @@ static void print_mat(long **m, int n, int m_size)
  * @param m table to store minimal multiplication costs from i to j
  * @param s table to store optimal split index between matrix i and j
  */
-static void compute_tables(int *Dim, int n, long **m, long **s)
+static void compute_tables(int *Dim, int n, int **m, int **s)
 {
 	for (int i = 0; i < n; i++)
-		m[i][i] = 0;
+		m[i][i] = 0; 
 
-	for (int len = 2; len <= n; len++)
+
+	for (int len = 2; len <= n; len++) // For each column
 	{
-		for (int i = 0; i <= n - len; i++)
+		for (int i = 0; i <= n - len; i++) // For each line until diagonal
 		{
 			int j = i + len - 1;
 			m[i][j] = INT_MAX; // Initialize to a large value
-			for (int k = i; k < j; k++)
+			for (int k = i; k < j; k++) // For each possible split
 			{
-				long cost = m[i][k] + m[k + 1][j] + Dim[i] * Dim[k + 1] * Dim[j + 1]; // Cost of multiplying matrices i..k and k+1..j
+				int cost = m[i][k] + m[k + 1][j] + Dim[i] * Dim[k + 1] * Dim[j + 1]; // Cost of multiplying matrices i..k and k+1..j
 				if (cost < m[i][j])
 				{
 					m[i][j] = cost;
@@ -154,7 +155,7 @@ static void compute_tables(int *Dim, int n, long **m, long **s)
  * @param n number of matrices in the chain
  * @return an array of length n - 1 indicating the split order (post-order traversal)
  */
-static int *generate_order_from_s(long **s, int n)
+static int *generate_order_from_s(int **s, int n)
 {
 	int *order = malloc((n - 1) * sizeof(int));
 	int top = -1;
@@ -213,14 +214,14 @@ static int *generate_order_from_s(long **s, int n)
 int *mat_great_multiplication_order(int *Dim)
 {
 	int n = 0;
-	while (Dim[n + 1]) n++;  // Count matrices based on non-zero Dim entries
+	while (Dim[n] != 0) n++;  // Count matrices based on non-zero Dim entries
 
-	long **m = (long **)malloc(n * sizeof(long *));
-	long **s = (long **)malloc(n * sizeof(long *));
-	for (long i = 0; i < n; i++)
+	int **m = (int **)malloc(n * sizeof(int *));
+	int **s = (int **)malloc(n * sizeof(int *));
+	for (int i = 0; i < n; i++)
 	{
-		m[i] = (long *)malloc(n * sizeof(long));
-		s[i] = (long *)malloc(n * sizeof(long));
+		m[i] = (int *)malloc(n * sizeof(int));
+		s[i] = (int *)malloc(n * sizeof(int));
 	}
 
 	compute_tables(Dim, n, m, s);

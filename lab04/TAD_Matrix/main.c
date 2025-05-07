@@ -4,7 +4,7 @@ int main()
 {
 	Matrix * mat = mat_create(2, 2);
 
-	int dimensoes[6] = {1, 1, 1, 1, 1, 1};
+	int dimensoes[] = {5, 10, 3, 20, 0};
 	int *ordem = mat_great_multiplication_order(dimensoes);
 
 	printf("Ordem de multiplicação: %d %d %d\n", ordem[0], ordem[1], ordem[2]);
