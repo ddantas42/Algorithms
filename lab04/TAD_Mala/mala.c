@@ -182,6 +182,7 @@ Mala_solucao *mala_optimal_solution(Item *it)
 	memset(dp, 0, sizeof(dp));
 
 	// Build DP table
+	float without, with;
 	for (int i = 1; i <= n; i++) {
 		for (int w = 0; w <= capacity; w++)
 		{
@@ -189,8 +190,8 @@ Mala_solucao *mala_optimal_solution(Item *it)
 				dp[i][w] = dp[i - 1][w];
 			else
 			{
-				float without = dp[i - 1][w];
-				float with = dp[i - 1][(int)(w - it[i - 1].weight)] + it[i - 1].value;
+				without = dp[i - 1][w];
+				with = dp[i - 1][(int)(w - it[i - 1].weight)] + it[i - 1].value;
 				dp[i][w] = (with > without) ? with : without;
 			}
 		}
@@ -199,11 +200,14 @@ Mala_solucao *mala_optimal_solution(Item *it)
 	// Backtrack to find which items were chosen
 	int w = capacity;
 	Item *selected = malloc((n + 1) * sizeof(Item)); // +1 for sentinel
-	if (!selected) return NULL;
+	if (!selected)
+		return NULL;
 
 	int count = 0;
-	for (int i = n; i > 0 && w > 0; i--) {
-		if (dp[i][w] != dp[i - 1][w]) {
+	for (int i = n; i > 0 && w > 0; i--)
+	{
+		if (dp[i][w] != dp[i - 1][w])
+		{
 			selected[count++] = it[i - 1];
 			w -= (int)it[i - 1].weight;
 		}
@@ -214,7 +218,8 @@ Mala_solucao *mala_optimal_solution(Item *it)
 
 	// Build solution
 	Mala_solucao *sol = malloc(sizeof(Mala_solucao));
-	if (!sol) {
+	if (!sol)
+	{
 		free(selected);
 		return NULL;
 	}

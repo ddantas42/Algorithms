@@ -14,7 +14,7 @@ int main()
 		return 1;
 	
 	/*
-	Assigning names to matrix
+	Assigning values to matrix
 			| 1 2 |
 			| 3 4 |
 	*/ 

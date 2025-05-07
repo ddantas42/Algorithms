@@ -52,14 +52,14 @@ void	mat_free(Matrix *mat)
  * @param mat pointer to the matrix
  * @param i row index
  * @param j column index
- * @return value at the specified position
+ * @return value at the specified position, or -1 if out of bounds
  */
 float	mat_access_element(Matrix *mat, int i, int j)
 {
 	if (i < 0 || j < 0 || i >= mat->lin || j >= mat->col)
 	{
 		printf("mat_access_element: Index out of bounds\n");
-		return 0;
+		return -1;
 	}
 	return (mat->v[(i * mat->col) + j]);
 
@@ -90,7 +90,7 @@ void	mat_assign_element(Matrix *mat, int i, int j, float v)
 int		mat_lines(Matrix *mat)
 {
 	return mat->lin;
-}  
+}
 
 /**
  * Returns the number of columns in the matrix
@@ -174,18 +174,14 @@ static void assign_steps(int **s, int i, int j, int *steps, int *current_step)
 		return;
 
 	int k = s[i][j];
+
+	// Recursively assign steps for the left and right subproblems first
 	assign_steps(s, i, k, steps, current_step);
 	assign_steps(s, k + 1, j, steps, current_step);
 
-	for (int a = i; a <= k; a++) {
-		if (steps[a] == 0)
-			steps[a] = (*current_step);
-	}
-	for (int b = k + 1; b <= j; b++) {
-		if (steps[b] == 0)
-			steps[b] = (*current_step);
-	}
-	(*current_step)++;
+	// Assign the current step to the split point
+	steps[k] = (*current_step);
+	(*current_step)++; // Increment the step after assigning
 }
 
 /** 
@@ -201,6 +197,8 @@ static void assign_steps(int **s, int i, int j, int *steps, int *current_step)
 int *mat_great_multiplication_order(int *Dim)
 {
 	int n = 0;
+	if (!Dim)
+		return NULL;
 	while (Dim[n]) n++;  // Count matrices based on non-zero Dim entries
 
 	int **m = (int **)malloc(n * sizeof(int *));
@@ -215,6 +213,7 @@ int *mat_great_multiplication_order(int *Dim)
 	int *steps = calloc(n, sizeof(int));
 	int current_step = 1;
 	assign_steps(s, 0, n - 1, steps, &current_step);
+
 	for (int i = 0; i < n; i++)
 	{
 		free(m[i]);

@@ -14,10 +14,10 @@ $(EXECUTABLE): $(OBJ)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
-	
+
 clean:
 	rm -f $(OBJ) $(EXECUTABLE)
 
 re: clean all
-	
+
 .PHONY: all clean re
