@@ -125,16 +125,15 @@ static void print_mat(int **m, int n, int m_size)
 static void compute_tables(int *Dim, int n, int **m, int **s)
 {
 	for (int i = 0; i < n; i++)
-		m[i][i] = 0; 
+		m[i][i] = 0;
 
-
-	for (int len = 2; len <= n; len++) // For each column
+	for (int len = 2; len <= n; len++)
 	{
-		for (int i = 0; i <= n - len; i++) // For each line until diagonal
+		for (int i = 0; i <= n - len; i++)
 		{
 			int j = i + len - 1;
 			m[i][j] = INT_MAX; // Initialize to a large value
-			for (int k = i; k < j; k++) // For each possible split
+			for (int k = i; k < j; k++)
 			{
 				int cost = m[i][k] + m[k + 1][j] + Dim[i] * Dim[k + 1] * Dim[j + 1]; // Cost of multiplying matrices i..k and k+1..j
 				if (cost < m[i][j])
@@ -149,56 +148,44 @@ static void compute_tables(int *Dim, int n, int **m, int **s)
 	print_mat(s, n, n);
 }
 
-/** 
- * Builds the multiplication order from the split table using a loop-based simulation
- * @param s split index table filled by compute_tables
- * @param n number of matrices in the chain
- * @return an array of length n - 1 indicating the split order (post-order traversal)
+/**
+ * Determines the optimal multiplication order for a chain of matrices
+ * by reconstructing the sequence of splits from the split index table.
+ * This function simulates the post-order traversal of the optimal
+ * parenthesization tree using a loop-based approach.
+ * 
+ * @param s A 2D array representing the split index table, where s[i][j]
+ *          indicates the index of the split for the subproblem involving
+ *          matrices i through j.
+ * @param i The start index of the current subproblem.
+ * @param j The end index of the current subproblem.
+ * @param steps An array to store the split indices for the optimal
+ * 		    multiplication order.
+ * @param current_step A pointer to the current step in the multiplication
+ *          order. It is incremented as splits are assigned.
+ *          This is used to track the current step in the
+ *          multiplication order.
+ * @return An array of size n - 1, where each element represents the
+ *         index of a split in the optimal multiplication order.
  */
-static int *generate_order_from_s(int **s, int n)
+static void assign_steps(int **s, int i, int j, int *steps, int *current_step)
 {
-	int *order = malloc((n - 1) * sizeof(int));
-	int top = -1;
+	if (i == j)
+		return;
 
-	// Simulate a stack of [i, j] ranges to process
-	typedef struct { int i, j; int visited; } Frame;
-	Frame *stack = malloc(n * n * sizeof(Frame));
+	int k = s[i][j];
+	assign_steps(s, i, k, steps, current_step);
+	assign_steps(s, k + 1, j, steps, current_step);
 
-	stack[++top] = (Frame){0, n - 1, 0};
-	int pos = 0;
-
-	while (top >= 0)
-	{
-		Frame *curr = &stack[top];
-
-		if (curr->i == curr->j)
-		{
-			top--;  // Leaf matrix, no split
-			continue;
-		}
-
-		if (curr->visited == 0)
-		{
-			// Go left first
-			curr->visited = 1;
-			stack[++top] = (Frame){curr->i, s[curr->i][curr->j], 0};
-		}
-		else if (curr->visited == 1)
-		{
-			// Then go right
-			curr->visited = 2;
-			stack[++top] = (Frame){s[curr->i][curr->j] + 1, curr->j, 0};
-		}
-		else
-		{
-			// Then store the split
-			order[pos++] = s[curr->i][curr->j];
-			top--;
-		}
+	for (int a = i; a <= k; a++) {
+		if (steps[a] == 0)
+			steps[a] = (*current_step);
 	}
-
-	free(stack);
-	return order;
+	for (int b = k + 1; b <= j; b++) {
+		if (steps[b] == 0)
+			steps[b] = (*current_step);
+	}
+	(*current_step)++;
 }
 
 /** 
@@ -214,7 +201,7 @@ static int *generate_order_from_s(int **s, int n)
 int *mat_great_multiplication_order(int *Dim)
 {
 	int n = 0;
-	while (Dim[n] != 0) n++;  // Count matrices based on non-zero Dim entries
+	while (Dim[n]) n++;  // Count matrices based on non-zero Dim entries
 
 	int **m = (int **)malloc(n * sizeof(int *));
 	int **s = (int **)malloc(n * sizeof(int *));
@@ -225,8 +212,9 @@ int *mat_great_multiplication_order(int *Dim)
 	}
 
 	compute_tables(Dim, n, m, s);
-	int *order = generate_order_from_s(s, n);
-
+	int *steps = calloc(n, sizeof(int));
+	int current_step = 1;
+	assign_steps(s, 0, n - 1, steps, &current_step);
 	for (int i = 0; i < n; i++)
 	{
 		free(m[i]);
@@ -235,5 +223,5 @@ int *mat_great_multiplication_order(int *Dim)
 	free(m);
 	free(s);
 
-	return order;
+	return steps;
 }
