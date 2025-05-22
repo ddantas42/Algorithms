@@ -1,22 +1,25 @@
 #include "../inc/project.h"
 
-free_tree(t_patiente *head)
+static void	free_list(t_patiente *head)
 {
-	t_patiente *current = head;
-	t_patiente *next;
+	if (!head)
+		return;
+	if (head->next)
+		free_list(head->next);
+	free(head);
+}
 
-	while (current != NULL)
-	{
-		next = current->next;
+void	free_lists(t_lists *list)
+{
+	if (!list)
+		return;
 
-		if (current->arrive_time != NULL)
-			free(current->arrive_time);
-		if (current->triage_time != NULL)
-			free(current->triage_time);
-		if (current->attendance_start_time != NULL)
-			free(current->attendance_start_time);
-			
-		free(current);
-		current = next;
-	}
+	t_patiente *lists[] = {
+		list->blue, list->green, list->yellow, list->orange,
+		list->red, list->triage, list->attendance_waiting, list->attendance_waiting, list->attended
+	};
+		
+	for (size_t i = 0; i < 9; ++i)
+		free_list(lists[i]);
+	free(list);
 }

@@ -1,5 +1,5 @@
 SRCPATH = src/
-SRC_FILES = main.c operations.c free.c
+SRC_FILES = main.c operations.c free.c list.c update.c
 SRC = $(addprefix $(SRCPATH), $(SRC_FILES))
 
 OBJ = $(SRC:.c=.o)

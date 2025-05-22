@@ -10,22 +10,24 @@
 # include <sys/types.h>
 
 /* Non-modifiable Macros */
-# define AZUL 0
-# define VERDE 1
-# define AMARELO 2
-# define LARANJA 3
-# define VERMELHO 4
+# define BLUE 0
+# define GREEN 1
+# define YELLOW 2
+# define ORANGE 3
+# define RED 4
 
 # define MAIN_MENU "\
+Current time: [%d:%.2d]\n\
 1. Register new patient\n\
 2. Call to Triage\n\
 3. Doctor attendance on next patient\n\
 4. Visualize patients being treated by queue\n\
 5. Visualize patients already attended by queue\n\
-6. Check average wait time per queue between register and beginning of triage\
-7. Check average wait time per queue between beginning of triage and beginning of attendance\n\
-8. Check average wait time per queue between register and ending of attendance\n\
-9. Exit\n\
+6. Visualize patients in waiting room for triage\n\
+7. Check average wait time per queue between register and beginning of triage\n\
+8. Check average wait time per queue between beginning of triage and beginning of attendance\n\
+9. Check average wait time per queue between register and ending of attendance\n\
+10. Exit\n\
 Option: "
 
 typedef struct s_patiente
@@ -34,16 +36,50 @@ typedef struct s_patiente
 	char 			name[101];
 	int 			age;
 	int 			color;
-	struct tm 		*arrive_time;
-	struct tm 		*triage_time;
-	struct tm 		*attendance_start_time;
+	int  			arrive_time;
+	int 			triage_time;
+	int 			attendance_start_time;
 
 	struct s_patiente *next;
+
 } t_patiente;
 
-typedef
 
+typedef struct s_lists
+{
+	// Waiting room lists
+	t_patiente *blue;
+	t_patiente *green;
+	t_patiente *yellow;
+	t_patiente *orange;
+	t_patiente *red;
 
-void register_new_patient(t_patiente **head);
+	// After Waiting room, currently in Triage
+	t_patiente *triage;
+
+	// After Triage, currently waiting for attendance
+	t_patiente *attendance_waiting;
+
+	// After Waiting for attendance, currently In attendance
+	t_patiente *attendance;
+
+	// After attendance, already attended
+	t_patiente *attended;
+	
+} t_lists;
+
+/* List Functions */
+void	insert(t_patiente **head, t_patiente *new_patient);
+
+/* Operations Functions */
+void	register_new_patient(t_lists *lists, int current_time);
+void	visualize_patients_waiting_triage(t_lists *lists);
+
+/* Free Functions */
+void	free_lists(t_lists *lists);
+
+/* Update Pantients Functions */
+void	update_patients(t_lists *lists, int current_time);
+
 
 #endif
