@@ -1,9 +1,46 @@
 #include "../../inc/project.h"
 
+/**
+ * Selects the patient that will go to triage after red list is empty
+ * After getting the non_null_lists, it will select list for the patient to be pulled from
+ * With the following chances:
+ * If there are 4 lists: List1 10%, List2 15%, List3 25% and List4 50%
+ * If there are 3 lists: List1 15%, List2 25% and List3 60%
+ * If there are 2 lists: List1 25% and List2 75%
+ * If there is 1 list: List1 100%
+ * List1 has priority over List2, List2 over List3 and List3 over List4
+ */
 static t_patiente *select_patient(t_patiente **non_null_lists, int size)
 {
-	(void)non_null_lists;
-	(void)size;
+	t_patiente *selected_patient = NULL;
+	int 		random_number = 0;
+	int			limits[4] = {10, 25, 50, 100}; // basic case when size == 4
+	
+	if (size == 0)
+		return NULL;
+	else if (size == 1)
+		return pop_bottom(&non_null_lists[0]);
+	else if (size == 2)
+	{
+		limits[0] = 25;
+		limits[1] = 100;
+	}
+	else if (size == 3)
+	{
+		limits[0] = 15;
+		limits[1] = 50;
+		limits[2] = 100;
+	}
+
+	if (random_number <= limits[0])
+		selected_patient = pop_bottom(&non_null_lists[0]);
+	else if (random_number <= limits[1])
+		selected_patient = pop_bottom(&non_null_lists[1]);
+	else if (random_number <= limits[2])
+		selected_patient = pop_bottom(&non_null_lists[2]);
+	else if (random_number <= limits[3])
+		selected_patient = pop_bottom(&non_null_lists[3]);
+
 	return NULL;
 }
 
@@ -28,19 +65,6 @@ void	call_patient_to_triage(t_lists *lists)
 				size_of_lists++; 
 		
 		patiente_to_triage = select_patient(non_null_lists, size_of_lists);				
-
-		// generate random number from 1 to 100
-		// srand(time(NULL));
-		// random_number = rand() % 101;
-
-		// if (random_number <= 10)
-		// 	patiente_to_triage = pop_bottom(&lists->blue);
-		// else if (random_number <= 25)
-		// 	patiente_to_triage = pop_bottom(&lists->green);
-		// else if (random_number <= 50)
-		// 	patiente_to_triage = pop_bottom(&lists->yellow);
-		// else 
-		// 	patiente_to_triage = pop_bottom(&lists->orange);
 	}
 	else
 		patiente_to_triage = pop_bottom(&lists->red);
