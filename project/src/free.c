@@ -22,4 +22,6 @@ void	free_lists(t_lists *list)
 	for (size_t i = 0; i < 9; ++i)
 		free_list(lists[i]);
 	free(list);
+
+	exit(1);
 }

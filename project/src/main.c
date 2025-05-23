@@ -28,27 +28,27 @@ int main()
 
 	// Time in minutes
 	int		current_time = 0;
-	int		time_passed = 0;
 
 	do
 	{
-		printf(MAIN_MENU, current_time / 60, current_time % 60), scanf("%d", &option);
+		printf(MAIN_MENU, current_time / 60, current_time % 60);
+		scanf("%d", &option);
 
 		switch (option)
 		{
-			case 1:
-				register_new_patient(list, current_time); break;
-			case 6:
-				visualize_patients_waiting_triage(list); break;
-			case 10:
-				printf("Exiting...\n"); break;
+			case 1:	register_new_patient(list, current_time); break;
+			case 2: call_patient_to_triage(list); break;
+
+			case 6: visualize_patients_waiting_triage(list); break;
+
+			case 10: printf("Exiting...\n"); break;
 
 			default: printf("Invalid option. Please try again.\n");
 		}
 
-		printf("\nTime passed (minutes): "), scanf("%d", &time_passed);
-		current_time += time_passed;
+		update_time(&current_time);
 		update_patients(list, current_time);
+		
 	} while (option != 2);
 
 	free_lists(list);

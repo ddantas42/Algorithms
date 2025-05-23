@@ -8,6 +8,7 @@
 # include <time.h>
 # include <unistd.h>
 # include <sys/types.h>
+# include <time.h>
 
 /* Non-modifiable Macros */
 # define BLUE 0
@@ -69,10 +70,13 @@ typedef struct s_lists
 } t_lists;
 
 /* List Functions */
-void	insert(t_patiente **head, t_patiente *new_patient);
+void		insert(t_patiente **head, t_patiente *new_patient);
+t_patiente 	*pop_bottom(t_patiente **head);
+t_patiente	**get_waiting_for_triage_lists(t_lists *lists);
 
 /* Operations Functions */
 void	register_new_patient(t_lists *lists, int current_time);
+void	call_patient_to_triage(t_lists *lists);
 void	visualize_patients_waiting_triage(t_lists *lists);
 
 /* Free Functions */
@@ -80,6 +84,7 @@ void	free_lists(t_lists *lists);
 
 /* Update Pantients Functions */
 void	update_patients(t_lists *lists, int current_time);
+void	update_time(int *current_time);
 
 
 #endif
