@@ -8,7 +8,7 @@ SRC = $(addprefix $(MAINPATH), $(MAIN_FILES)) $(addprefix $(OPERATIONPATH), $(OP
 
 OBJ = $(SRC:.c=.o)
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -pedantic 
 
 EXECUTABLE = queue_system
 

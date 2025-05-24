@@ -46,7 +46,8 @@ int main()
 			default: printf("Invalid option. Please try again.\n");
 		}
 
-		update_time(&current_time);
+		if (option >= 1 && option <= 3)
+			update_time(&current_time);
 		update_patients(list, current_time);
 		
 	} while (option != 10);

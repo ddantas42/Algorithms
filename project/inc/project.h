@@ -72,7 +72,7 @@ typedef struct s_lists
 /* List Functions */
 void		insert(t_patiente **head, t_patiente *new_patient);
 t_patiente 	*pop_bottom(t_patiente **head);
-t_patiente	**get_waiting_for_triage_lists(t_lists *lists);
+t_patiente	***get_waiting_for_triage_lists(t_lists *lists);
 
 /* Operations Functions */
 void	register_new_patient(t_lists *lists, int current_time);
