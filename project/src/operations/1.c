@@ -15,10 +15,11 @@ void	register_new_patient(t_lists *lists, int current_time)
 	new_patient->id = patient_id++;	
 	printf("Enter patient's name: ");
 	scanf("%s", new_patient->name);
-	printf("Enter patient's age: ");
-	scanf("%d", &new_patient->age);
-	printf("Enter patient's color (red = 4 | orange = 3 | yellow = 2 | green = 1 | blue = 0)\nColor: ");
-	scanf("%d", &new_patient->color);
+
+	new_patient->age = ler_int(PATIENTE_AGE, "Invalid age. Please enter a valid age between 0 and 120.\n", 0, 120);
+	new_patient->color = ler_int(PATIENTE_COLOR, "Invalid color. Please enter a valid color\
+(red = 4 | orange = 3 | yellow = 2 | green = 1 | blue = 0).\n", 0, 4);
+
 
 	new_patient->arrive_time = current_time;
 	new_patient->triage_time = -1;
@@ -36,7 +37,7 @@ void	register_new_patient(t_lists *lists, int current_time)
 		default:
 			printf("Invalid color. Patient not registered.\n");
 			free(new_patient);
-			return;
+			return ;
 	}
 
 	printf("Patient %s registered successfully.\n", new_patient->name);

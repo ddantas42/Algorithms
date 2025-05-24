@@ -10,26 +10,7 @@
 # include <sys/types.h>
 # include <time.h>
 
-/* Non-modifiable Macros */
-# define BLUE 0
-# define GREEN 1
-# define YELLOW 2
-# define ORANGE 3
-# define RED 4
-
-# define MAIN_MENU "\n\
-Current time: [%d:%.2d]\n\
-1. Register new patient\n\
-2. Call to Triage\n\
-3. Doctor attendance on next patient\n\
-4. Visualize patients being treated by queue\n\
-5. Visualize patients already attended by queue\n\
-6. Visualize patients in waiting room for triage\n\
-7. Check average wait time per queue between register and beginning of triage\n\
-8. Check average wait time per queue between beginning of triage and beginning of attendance\n\
-9. Check average wait time per queue between register and ending of attendance\n\
-10. Exit\n\
-Option: "
+# include "macros.h"
 
 typedef struct s_patiente
 {
@@ -69,6 +50,12 @@ typedef struct s_lists
 	
 } t_lists;
 
+typedef struct s_str_list
+{
+	char str[40];
+	t_patiente *head;
+} t_str_list;
+
 /* List Functions */
 void		insert(t_patiente **head, t_patiente *new_patient);
 t_patiente 	*pop_bottom(t_patiente **head);
@@ -76,7 +63,7 @@ t_patiente	***get_waiting_for_triage_lists(t_lists *lists);
 
 /* Operations Functions */
 void	register_new_patient(t_lists *lists, int current_time);
-void	call_patient_to_triage(t_lists *lists);
+void	call_patient_to_triage(t_lists *lists, int current_time);
 void	visualize_patients_waiting_triage(t_lists *lists);
 
 /* Free Functions */
@@ -86,5 +73,7 @@ void	free_lists(t_lists *lists);
 void	update_patients(t_lists *lists, int current_time);
 void	update_time(int *current_time);
 
+/* Input handle Functions */
+int ler_int(char *prompt, char *err, int limit_down, int limit_up);
 
 #endif

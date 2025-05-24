@@ -34,7 +34,7 @@ static t_patiente *select_patient(t_patiente ***non_null_lists, int size)
 
 	// Generate a random number between 1 and 100
 	srand(time(NULL));
-	random_number = rand() % 100 + 1; // 1 to 100
+	random_number = (rand() % 100) + 1; // 1 to 100
 
 	if (random_number <= limits[0])
 		selected_patient = pop_bottom(non_null_lists[0]);
@@ -54,7 +54,7 @@ static t_patiente *select_patient(t_patiente ***non_null_lists, int size)
  * After that each color has a chance of getting called, only one will be selected
  * Blue has 10%, Green has 15%, Yellow has 25% and Orange has 50%
  */
-void	call_patient_to_triage(t_lists *lists)
+void	call_patient_to_triage(t_lists *lists, int current_time)
 {
 	t_patiente *patiente_to_triage = NULL;
 	t_patiente	***non_null_lists = NULL;
@@ -83,6 +83,7 @@ void	call_patient_to_triage(t_lists *lists)
 	else 
 	{
 		printf("Patient %s selected for triage", patiente_to_triage->name);
+		patiente_to_triage->triage_time = current_time;
 		insert(&lists->triage, patiente_to_triage);
 	}
 }
