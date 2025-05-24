@@ -49,7 +49,7 @@ int main()
 		update_time(&current_time);
 		update_patients(list, current_time);
 		
-	} while (option != 2);
+	} while (option != 10);
 
 	free_lists(list);
 

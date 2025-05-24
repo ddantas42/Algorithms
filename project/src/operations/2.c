@@ -32,6 +32,10 @@ static t_patiente *select_patient(t_patiente **non_null_lists, int size)
 		limits[2] = 100;
 	}
 
+	// Generate a random number between 1 and 100
+	srand(time(NULL));
+	random_number = rand() % 100 + 1; // 1 to 100
+
 	if (random_number <= limits[0])
 		selected_patient = pop_bottom(&non_null_lists[0]);
 	else if (random_number <= limits[1])
@@ -41,7 +45,7 @@ static t_patiente *select_patient(t_patiente **non_null_lists, int size)
 	else if (random_number <= limits[3])
 		selected_patient = pop_bottom(&non_null_lists[3]);
 
-	return NULL;
+	return selected_patient;
 }
 
 /**
@@ -56,6 +60,8 @@ void	call_patient_to_triage(t_lists *lists)
 	t_patiente	**non_null_lists = NULL;
 	int			size_of_lists = 0;
 
+	printf("\n ---- Call patient to triage ---- \n");
+	
 	if (lists->red == NULL)
 	{
 		// get non null lists and get total of them

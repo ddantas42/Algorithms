@@ -13,7 +13,7 @@ static void	print_list(t_patiente *head)
 	while (current)
 	{
 		printf("\t\tID: %d, Name: %s, Age: %d, Color: %s\n", current->id, current->name, current->age, color_names[current->color]);
-		printf("\t\tArrived: %d, Triaged: %d, attended: %d ", current->arrive_time, current->triage_time, current->attendance_start_time);
+		printf("\t\tArrived: %d, Triaged: %d, attended: %d\n", current->arrive_time, current->triage_time, current->attendance_start_time);
 		current = current->next;
 	}
 }

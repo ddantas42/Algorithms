@@ -18,7 +18,7 @@ void	free_lists(t_lists *list)
 		list->blue, list->green, list->yellow, list->orange,
 		list->red, list->triage, list->attendance_waiting, list->attendance_waiting, list->attended
 	};
-		
+
 	for (size_t i = 0; i < 9; ++i)
 		free_list(lists[i]);
 	free(list);

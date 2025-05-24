@@ -10,6 +10,8 @@ void	register_new_patient(t_lists *lists, int current_time)
 		return;
 	}
 
+	printf("\n ---- Registering new patient ---- \n");
+
 	new_patient->id = patient_id++;	
 	printf("Enter patient's name: ");
 	scanf("%s", new_patient->name);

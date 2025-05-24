@@ -17,7 +17,7 @@
 # define ORANGE 3
 # define RED 4
 
-# define MAIN_MENU "\
+# define MAIN_MENU "\n\
 Current time: [%d:%.2d]\n\
 1. Register new patient\n\
 2. Call to Triage\n\
