@@ -15,10 +15,10 @@ int hash(int key, int size)
 void insertHash(int *hashTable, int size, int key)
 {
 	int index = hash(key, size);
+	
 	while (hashTable[index] != NOT_FOUND)
-	{
 		index = (index + 1) % size;
-	}
+		
 	hashTable[index] = key;
 }
 
@@ -26,6 +26,7 @@ int searchHash(int *hashTable, int size, int key)
 {
 	int index = hash(key, size);
 	int start = index;
+
 	while (hashTable[index] != NOT_FOUND)
 	{
 		if (hashTable[index] == key)
@@ -47,6 +48,7 @@ int compareInt(const void *a, const void *b)
 int binarySearch(int *arr, int n, int key)
 {
 	int low = 0, high = n - 1;
+
 	while (low <= high)
 	{
 		int mid = (low + high) / 2;
@@ -77,7 +79,8 @@ int main() {
 
 		// Geração dos valores e inserção
 		srand(0);
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++)
+		{
 			int value = rand();
 			vector[i] = value;
 			insertHash(hashTable, tableSize, value);
@@ -111,7 +114,7 @@ int main() {
 		double timeHash = (double)(end - start) / CLOCKS_PER_SEC;
 
 		printf("n = %d: Vetor ordenado = %.6f s | Hash table = %.6f s\n",
-			   n, timeVector, timeHash);
+			 n, timeVector, timeHash);
 
 		free(vector);
 		free(hashTable);
