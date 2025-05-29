@@ -62,7 +62,8 @@ int binarySearch(int *arr, int n, int key)
 	return NOT_FOUND;
 }
 
-int main() {
+int main()
+{
 	int ns[] = {1000, 10000, 50000, 100000};
 	int numTests = sizeof(ns) / sizeof(ns[0]);
 
