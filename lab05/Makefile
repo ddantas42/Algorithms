@@ -5,7 +5,7 @@ OBJ = $(SRC:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-EXECUTABLE = algo
+EXECUTABLE = algos
 
 all: $(EXECUTABLE)
 
