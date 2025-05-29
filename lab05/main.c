@@ -35,7 +35,7 @@ int main()
 
 		qsort(vector, n, sizeof(int), compareInt);
 
-		srand(0);
+		srand(0); // Same seed for the same random sequence
 
 		clock_t start = clock();
 		for (int i = 0; i < n; i++)
