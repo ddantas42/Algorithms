@@ -32,24 +32,28 @@ int main()
 	do
 	{
 		printf(MAIN_MENU, current_time / 60, current_time % 60);
-		scanf("%d", &option);
+		option = ler_int(MENU_PROMPT,MENU_ERR, 1, 10);
 
 		switch (option)
 		{
 			case 1:	register_new_patient(list, current_time); break;
-			case 2: call_patient_to_triage(list); break;
+			case 2:	call_patient_to_triage(list, current_time); break;
 
-			case 6: visualize_patients_waiting_triage(list); break;
+			case 6:	visualize_patients_waiting_triage(list); break;
 
 			case 10: printf("Exiting...\n"); break;
 
 			default: printf("Invalid option. Please try again.\n");
 		}
 
-		update_time(&current_time);
+
+		// Update time
+		if (option >= 1 && option <= 3)
+			current_time += ler_int("\nTime passed (minutes): ", "Invalid time. Please enter a valid time in minutes. (0 - 1440)\n", 0, 1440);
+			
 		update_patients(list, current_time);
 		
-	} while (option != 2);
+	} while (option != 10);
 
 	free_lists(list);
 

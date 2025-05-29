@@ -13,34 +13,32 @@ static void	print_list(t_patiente *head)
 	while (current)
 	{
 		printf("\t\tID: %d, Name: %s, Age: %d, Color: %s\n", current->id, current->name, current->age, color_names[current->color]);
-		printf("\t\tArrived: %d, Triaged: %d, attended: %d ", current->arrive_time, current->triage_time, current->attendance_start_time);
+		printf("\t\tArrived: %d, Triaged: %d, attended: %d\n", current->arrive_time, current->triage_time, current->attendance_start_time);
 		current = current->next;
 	}
 }
 
 void 	visualize_patients_waiting_triage(t_lists *lists)
 {
-	printf("Patients waiting for triage:\n");
-	
-	printf("\tBlue patients:\n");
-	print_list(lists->blue);
-	
-	printf("\tGreen patients:\n");
-	print_list(lists->green);
-	
-	printf("\tYellow patients:\n");
-	print_list(lists->yellow);
-	
-	printf("\tOrange patients:\n");
-	print_list(lists->orange);
-	
-	printf("\tRed patients:\n");
-	print_list(lists->red);
+	t_str_list str_list[8] =
+	{
+		{"\tBlue patients:\n", lists->blue},
+		{"\tGreen patients:\n", lists->green},
+		{"\tYellow patients:\n", lists->yellow},
+		{"\tOrange patients:\n", lists->orange},
+		{"\tRed patients:\n", lists->red},
+		{"Patients in Triage:\n", lists->triage},
+		{"Patients waiting for attendance:\n", lists->attendance_waiting},
+		{"Patients already attended:\n", lists->attended}
+	};
 
-	printf("\tPantients in Triage:\n");
-	print_list(lists->triage);
-	printf("\tPatients waiting for attendance:\n");
-	print_list(lists->attendance);
-	printf("\tPatients already attended:\n");
-	print_list(lists->attended);
+	printf("Patients waiting for triage:\n");
+	for (int i = 0; i < 8; i++)
+	{
+		if (str_list[i].head == NULL)
+			continue;
+
+		printf("%s", str_list[i].str);
+		print_list(str_list[i].head);
+	}
 }

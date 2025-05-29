@@ -10,7 +10,7 @@
  * If there is 1 list:	 List1 100%
  * List1 has priority over List2, List2 over List3 and List3 over List4
  */
-static t_patiente *select_patient(t_patiente **non_null_lists, int size)
+static t_patiente *select_patient(t_patiente ***non_null_lists, int size)
 {
 	t_patiente *selected_patient = NULL;
 	int 		random_number = 0;
@@ -19,7 +19,7 @@ static t_patiente *select_patient(t_patiente **non_null_lists, int size)
 	if (size == 0)
 		return NULL;
 	else if (size == 1)
-		return pop_bottom(&non_null_lists[0]);
+		return pop_bottom(non_null_lists[0]);
 	else if (size == 2)
 	{
 		limits[0] = 25;
@@ -32,15 +32,19 @@ static t_patiente *select_patient(t_patiente **non_null_lists, int size)
 		limits[2] = 100;
 	}
 
+	// Generate a random number between 1 and 100
+	srand(time(NULL));
+	random_number = (rand() % 100) + 1; // 1 to 100
+
 	if (random_number <= limits[0])
-		selected_patient = pop_bottom(&non_null_lists[0]);
+		selected_patient = pop_bottom(non_null_lists[0]);
 	else if (random_number <= limits[1])
-		selected_patient = pop_bottom(&non_null_lists[1]);
+		selected_patient = pop_bottom(non_null_lists[1]);
 	else if (random_number <= limits[2])
-		selected_patient = pop_bottom(&non_null_lists[2]);
+		selected_patient = pop_bottom(non_null_lists[2]);
 	else if (random_number <= limits[3])
-		selected_patient = pop_bottom(&non_null_lists[3]);
- 
+		selected_patient = pop_bottom(non_null_lists[3]);
+
 	return selected_patient;
 }
 
@@ -50,12 +54,14 @@ static t_patiente *select_patient(t_patiente **non_null_lists, int size)
  * After that each color has a chance of getting called, only one will be selected
  * Blue has 10%, Green has 15%, Yellow has 25% and Orange has 50%
  */
-void	call_patient_to_triage(t_lists *lists)
+void	call_patient_to_triage(t_lists *lists, int current_time)
 {
 	t_patiente *patiente_to_triage = NULL;
-	t_patiente	**non_null_lists = NULL;
+	t_patiente	***non_null_lists = NULL;
 	int			size_of_lists = 0;
 
+	printf("\n ---- Call patient to triage ---- \n");
+	
 	if (lists->red == NULL)
 	{
 		// get non null lists and get total of them
@@ -65,6 +71,9 @@ void	call_patient_to_triage(t_lists *lists)
 				size_of_lists++; 
 		
 		patiente_to_triage = select_patient(non_null_lists, size_of_lists);				
+		if (non_null_lists)
+			free(non_null_lists);
+		
 	}
 	else
 		patiente_to_triage = pop_bottom(&lists->red);
@@ -74,6 +83,7 @@ void	call_patient_to_triage(t_lists *lists)
 	else 
 	{
 		printf("Patient %s selected for triage", patiente_to_triage->name);
+		patiente_to_triage->triage_time = current_time;
 		insert(&lists->triage, patiente_to_triage);
 	}
 }

@@ -5,3 +5,4 @@
 **/*.o
 **/algos
 TAD/ponto
+valgrind.txt
