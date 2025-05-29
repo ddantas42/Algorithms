@@ -4,7 +4,6 @@ int hash(int key, int size)
 {
 	return key % size;
 }
-
 void insertHash(int *hashTable, int size, int key)
 {
 	int index = hash(key, size);
@@ -15,6 +14,15 @@ void insertHash(int *hashTable, int size, int key)
 	hashTable[index] = key;
 }
 
+
+
+/**
+ * Searches for a key in a hash table using linear probing.
+ * @param hashTable Pointer to the hash table.
+ * @param size Size of the hash table.
+ * @param key The value to search for.
+ * @return The index of the key if found, otherwise NOT_FOUND.
+ */
 int searchHash(int *hashTable, int size, int key)
 {
 	int index = hash(key, size);
@@ -31,6 +39,13 @@ int searchHash(int *hashTable, int size, int key)
 	return NOT_FOUND;
 }
 
+/**
+ * Performs a binary search on a sorted array.
+ * @param arr Pointer to the array to search.
+ * @param n Size of the array.
+ * @param key The value to search for.
+ * @return The index of the key if found, otherwise NOT_FOUND.
+ */
 int binarySearch(int *arr, int n, int key)
 {
 	int low = 0, high = n - 1;
