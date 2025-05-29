@@ -7,7 +7,7 @@
  * If there are 4 lists: List1 10%, List2 15%, List3 25% and List4 50%
  * If there are 3 lists: List1 15%, List2 25% and List3 60%
  * If there are 2 lists: List1 25% and List2 75%
- * If there is 1 list: List1 100%
+ * If there is 1 list:	 List1 100%
  * List1 has priority over List2, List2 over List3 and List3 over List4
  */
 static t_patiente *select_patient(t_patiente **non_null_lists, int size)
@@ -40,8 +40,8 @@ static t_patiente *select_patient(t_patiente **non_null_lists, int size)
 		selected_patient = pop_bottom(&non_null_lists[2]);
 	else if (random_number <= limits[3])
 		selected_patient = pop_bottom(&non_null_lists[3]);
-
-	return NULL;
+ 
+	return selected_patient;
 }
 
 /**
