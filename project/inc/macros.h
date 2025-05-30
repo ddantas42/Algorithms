@@ -11,6 +11,7 @@
 
 # define MAIN_MENU "\n\
 Current time: [%d:%.2d]\n\
+0. Pass time\n\
 1. Register new patient\n\
 2. Call to Triage\n\
 3. Doctor attendance on next patient\n\

@@ -41,6 +41,20 @@ t_patiente 	*pop_bottom(t_patiente **head)
 	return current;
 }
 
+t_patiente	*pop_top(t_patiente **head)
+{
+	t_patiente *top_patient = NULL;
+	
+	if (*head == NULL)
+		return NULL;
+
+	top_patient = *head;
+	*head = (*head)->next;
+	top_patient->next = NULL;
+
+	return top_patient;
+}
+
 /**
  * Get an array of lists ([blue, orange]) that are not null
  * I.e: If only Blue and Green exists, it will return the following array:
@@ -51,10 +65,7 @@ t_patiente	***get_waiting_for_triage_lists(t_lists *lists)
 	t_patiente ***non_null_lists = (t_patiente ***)calloc(sizeof(t_patiente **), (4 + 1));
 	int			i = 0;
 	if (!non_null_lists)
-	{
-		printf("Failed to allocate memory for non_null_lists\n");
-		free_lists(lists);
-	}
+		free_lists(lists, "Failed to allocate memory for non_null_lists\n");
 	
 	if (lists->blue != NULL) 	non_null_lists[i++] = &lists->blue;
 	if (lists->green != NULL) 	non_null_lists[i++] = &lists->green;

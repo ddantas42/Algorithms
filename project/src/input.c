@@ -1,14 +1,14 @@
 #include "../inc/project.h"
 
-static int verificar_formato(int scanf_nbr)
+static int verificar_formato(int scanf_nbr, t_lists *lists)
 {
 	if (scanf_nbr > 0)
 		return 0;
 
-	// if (scanf_nbr == EOF)
-		// sair_programa(EOF);
+	if (scanf_nbr == EOF)
+		free_lists(lists, "Error: EOF detected. Closing...\n");
 		
-	printf("Erro: Input Invalido\n");
+	printf("Error: Invalid Input\n");
 
 	scanf("%*[^\n]");
 	fflush(NULL);
@@ -16,7 +16,7 @@ static int verificar_formato(int scanf_nbr)
 	return 1;
 }
 
-int ler_int(char *prompt, char *err, int limit_down, int limit_up)
+int ler_int(char *prompt, char *err, int limit_down, int limit_up, t_lists *lists)
 {
 	int n = -1;
 	int scanf_nbr = -1;
@@ -29,7 +29,7 @@ int ler_int(char *prompt, char *err, int limit_down, int limit_up)
 		scanf("%*[^\n]");
 		fflush(stdin);
 
-		if (verificar_formato(scanf_nbr) == 1)
+		if (verificar_formato(scanf_nbr, lists) == 1)
 			continue;
 
 		if (n < limit_down || n > limit_up)

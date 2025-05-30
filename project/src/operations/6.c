@@ -20,20 +20,20 @@ static void	print_list(t_patiente *head)
 
 void 	visualize_patients_waiting_triage(t_lists *lists)
 {
-	t_str_list str_list[8] =
+	t_str_list str_list[] =
 	{
+		{"Waiting room patients:\n", lists->arrive},
+		{"Patients in Triage:\n", lists->triage},
 		{"\tBlue patients:\n", lists->blue},
 		{"\tGreen patients:\n", lists->green},
 		{"\tYellow patients:\n", lists->yellow},
 		{"\tOrange patients:\n", lists->orange},
 		{"\tRed patients:\n", lists->red},
-		{"Patients in Triage:\n", lists->triage},
-		{"Patients waiting for attendance:\n", lists->attendance_waiting},
+		{"Patients in Attendance:\n", lists->attendance},
 		{"Patients already attended:\n", lists->attended}
 	};
 
-	printf("Patients waiting for triage:\n");
-	for (int i = 0; i < 8; i++)
+	for (long unsigned int i = 0; i < sizeof(str_list) / sizeof(str_list[0]); i++)
 	{
 		if (str_list[i].head == NULL)
 			continue;
