@@ -46,7 +46,6 @@ int main()
 			default: printf("Invalid option. Please try again.\n");
 		}
 
-
 		// Update time
 		if (option >= 1 && option <= 3)
 			current_time += ler_int("\nTime passed (minutes): ", "Invalid time. Please enter a valid time in minutes. (0 - 1440)\n", 0, 1440);

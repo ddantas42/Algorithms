@@ -64,13 +64,15 @@ int main()
 		algos.searchsTime[0] = time_algorithm(algos.vector, n, n, binarySearch);
 		algos.searchsTime[1] = time_algorithm(algos.hashTable, algos.hashTableSize, n, searchHash);
 
-		printf(BLUE "📊 n = %d" RESET ": "
-				GREEN "\t🟩 Vetor ordenado = %.3f ms" RESET " | "
-				CYAN "🔷 Hash table = %.3f ms" RESET "\n",
+		printf("N = %d:\n"
+				GREEN "\t🟩 Vetor ordenado = %.3f ms\n" RESET
+				CYAN "\t🔷 Hash table \t  = %.3f ms" RESET "\n",
 				n, algos.searchsTime[0], algos.searchsTime[1]);
 
-		free(algos.vector); 	algos.vector = NULL;
-		free(algos.hashTable);	algos.hashTable = NULL;
+		free(algos.vector);
+		algos.vector = NULL;
+		free(algos.hashTable);
+		algos.hashTable = NULL;
 	}
 
 	return 0;
