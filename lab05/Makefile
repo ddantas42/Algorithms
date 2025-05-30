@@ -1,7 +1,7 @@
-SRC_FILES = main.c algorithms.c
-SRC = $(SRC_FILES)
 
+SRC = main.c algorithms.c
 OBJ = $(SRC:.c=.o)
+
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 

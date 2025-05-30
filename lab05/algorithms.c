@@ -14,8 +14,6 @@ void insertHash(int *hashTable, int size, int key)
 	hashTable[index] = key;
 }
 
-
-
 /**
  * Searches for a key in a hash table using linear probing.
  * @param hashTable Pointer to the hash table.
