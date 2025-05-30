@@ -67,9 +67,7 @@ int main()
 		
 	} while (option != 10);
 
-	free_lists(list, "Exiting program. Freeing resources...\n");
+	free_lists(list, "Exiting program. Freeing resources...\n", 0);
 
 	return 0;
 }
-
-// red < orange < yellow < green < blue

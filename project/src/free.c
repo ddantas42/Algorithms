@@ -9,7 +9,13 @@ static void	free_list(t_patiente *head)
 	free(head);
 }
 
-void	free_lists(t_lists *list, char *msg)
+/**
+ * free_lists - Frees all lists in the t_lists structure and print a message if provided. Then exists.
+ * @param list Pointer to the t_lists structure containing all patient lists.
+ * @param msg Optional message to print before exiting.
+ * @param exit_status Exit status code to use when exiting the program.
+ */
+void	free_lists(t_lists *list, char *msg, int exit_status)
 {
 	if (!list)
 		return;
@@ -27,5 +33,5 @@ void	free_lists(t_lists *list, char *msg)
 	if (msg)
 		printf("%s\n", msg);
 
-	exit(1);
+	exit(exit_status);
 }

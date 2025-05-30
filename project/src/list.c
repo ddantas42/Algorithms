@@ -1,6 +1,13 @@
 #include "../inc/project.h"
 
-// Inserts a new node at the end of the list.
+/**
+ * Inserts a new patient at the end of the linked list.
+ * If the list is empty, it sets the new patient as the head.
+ * If the list is not empty, it traverses to the end of the list
+ * and appends the new patient there.
+ * @param head Pointer to the head of the linked list.
+ * @param new_patient Pointer to the new patient to be inserted.
+ */
 void	insert(t_patiente **head, t_patiente *new_patient)
 {
 	if (*head == NULL)
@@ -17,8 +24,7 @@ void	insert(t_patiente **head, t_patiente *new_patient)
 	new_patient->next = NULL;
 }
 
-// Pops the bottom node from the list.
-// Returns the popped node.
+// Pop the bottom node and returns it.
 t_patiente 	*pop_bottom(t_patiente **head)
 {
 	if (*head == NULL)
@@ -41,6 +47,7 @@ t_patiente 	*pop_bottom(t_patiente **head)
 	return current;
 }
 
+// Pop the top node and returns it.
 t_patiente	*pop_top(t_patiente **head)
 {
 	t_patiente *top_patient = NULL;
@@ -59,13 +66,15 @@ t_patiente	*pop_top(t_patiente **head)
  * Get an array of lists ([blue, orange]) that are not null
  * I.e: If only Blue and Green exists, it will return the following array:
  * [blue, green, NULL, NULL, NULL]
+ * @param lists Pointer to the lists structure containing all patient lists.
+ * @return A pointer to an array of pointers to t_patiente lists.
  */
 t_patiente	***get_waiting_for_triage_lists(t_lists *lists)
 {
 	t_patiente ***non_null_lists = (t_patiente ***)calloc(sizeof(t_patiente **), (4 + 1));
 	int			i = 0;
 	if (!non_null_lists)
-		free_lists(lists, "Failed to allocate memory for non_null_lists\n");
+		free_lists(lists, "Failed to allocate memory for non_null_lists\n", 1);
 	
 	if (lists->blue != NULL) 	non_null_lists[i++] = &lists->blue;
 	if (lists->green != NULL) 	non_null_lists[i++] = &lists->green;

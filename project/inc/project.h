@@ -70,7 +70,7 @@ void	call_patient_to_triage(t_lists *lists, int current_time);
 void	visualize_patients_waiting_triage(t_lists *lists);
 
 /* Free Functions */
-void	free_lists(t_lists *lists, char *msg);
+void	free_lists(t_lists *lists, char *msg, int exit_status);
 
 /* Update Pantients Functions */
 void	update_patients(t_lists *lists, int current_time);

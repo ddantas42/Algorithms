@@ -1,5 +1,15 @@
 #include "../inc/project.h"
 
+/**
+ * update_triage - This function updates the triage list by checking if the
+ * waiting time of the first patient in the triage exceeds 10 minutes.
+ * If it does, the patient is moved to the appropriate color list based on their
+ * color and their waiting time is updated.
+ * It recursively calls itself to check the next patient in the triage list.
+ * @lists: The lists of patients containing the triage and color lists.
+ * @current_time: The current time in the simulation.
+ * @color_list: A 2D array of pointers to color lists where patients will be moved.
+*/
 static void update_triage(t_lists *lists, int current_time, t_patiente ***color_list)
 {
 	t_patiente *popped = NULL;
@@ -27,12 +37,17 @@ static void update_triage(t_lists *lists, int current_time, t_patiente ***color_
 	}
 }
 
+/**
+ * This function will update the patients in triage and in attendance
+ * @param lists The lists of patients
+ * @param current_time The current time in the simulation
+*/
 void 	update_patients(t_lists *lists, int current_time)
 {
 	t_patiente ***color_list = (t_patiente ***)calloc(sizeof(t_patiente **), (4 + 1));
 
 	if (!color_list)
-		free_lists(lists, "Malloc error on: ***color_list\n");
+		free_lists(lists, "Malloc error on: ***color_list\n", 1);
 
 	color_list[BLUE] = &lists->blue;
 	color_list[GREEN] = &lists->green;
