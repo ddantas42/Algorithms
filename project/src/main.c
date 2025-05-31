@@ -56,6 +56,7 @@ int main()
 			case 0: break;
 			case 1:	register_new_patient(list, current_time); break;
 			case 2:	call_patient_to_triage(list, current_time); break;
+			case 3: doctor_attendance_on_next_patient(list, current_time); break;
 
 			case 6: visualize_patients_waiting_triage(list); break;
 			

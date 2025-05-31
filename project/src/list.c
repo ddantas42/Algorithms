@@ -89,7 +89,7 @@ void	print_list(t_lists *lists, t_patiente *head)
  * @param lists Pointer to the lists structure containing all patient lists.
  * @return A pointer to an array of pointers to t_patiente lists.
  */
-t_patiente	***get_waiting_for_triage_lists(t_lists *lists)
+t_patiente	***get_waiting_for_attendance_lists(t_lists *lists)
 {
 	t_patiente ***non_null_lists = (t_patiente ***)calloc(sizeof(t_patiente **), (4 + 1));
 	int			i = 0;

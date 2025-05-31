@@ -17,7 +17,7 @@ static void update_triage(t_lists *lists, int current_time, t_patiente ***color_
 	if (lists->triage == NULL)
 		return ;
 
-	if (current_time - lists->triage->arrive_time >= 10)
+	if (current_time - lists->triage->triage_time>= 10)
 	{
 		popped = pop_top(&lists->triage);
 		popped->waiting_attendance_time = popped->triage_time + 10;
