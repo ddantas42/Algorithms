@@ -52,21 +52,17 @@ typedef struct s_lists
 	
 } t_lists;
 
-typedef struct s_str_list
-{
-	char str[40];
-	t_patiente *head;
-} t_str_list;
-
 /* List Functions */
 void		insert(t_patiente **head, t_patiente *new_patient);
 t_patiente 	*pop_bottom(t_patiente **head);
 t_patiente	*pop_top(t_patiente **head);
+void		print_list(t_patiente *head);
 t_patiente	***get_waiting_for_triage_lists(t_lists *lists);
 
 /* Operations Functions */
 void	register_new_patient(t_lists *lists, int current_time);
 void	call_patient_to_triage(t_lists *lists, int current_time);
+void 	visualize_patients_waiting_triage(t_lists *lists);
 
 void 	print_every_list(t_lists *lists);
 

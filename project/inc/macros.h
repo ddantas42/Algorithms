@@ -9,6 +9,8 @@
 # define ORANGE 3
 # define RED 4
 
+# define NO_COLOR 5
+
 # define MAIN_MENU "\n\
 Current time: [%d:%.2d]\n\
 0. Pass time\n\

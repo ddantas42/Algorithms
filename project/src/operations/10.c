@@ -1,27 +1,11 @@
 #include "../../inc/project.h"
 
-static void	print_list(t_patiente *head)
-{
-	if (!head)
-	{
-		printf("\t\tNo patients in this list.\n");
-		return;
-	}
-
-	t_patiente *current = head;
-	char *color_names[] = {"Blue", "Green", "Yellow", "Orange", "Red"};
-	while (current)
-	{
-		printf("\t\tID: %d, Name: %s, Age: %d, Color: %s\n", current->id, current->name, current->age, color_names[current->color]);
-		printf("\t\tArrived: %d, Triaged: %d, attended: %d\n", current->arrive_time, current->triage_time, current->attendance_start_time);
-		current = current->next;
-	}
-}
-
 void 	print_every_list(t_lists *lists)
 {
-	t_str_list str_list[] =
-	{
+	struct s_str_list {
+		char str[40];
+		t_patiente *head;
+	} str_list[] = {
 		{"Waiting room patients:\n", lists->arrive},
 		{"Patients in Triage:\n", lists->triage},
 		{"\tBlue patients:\n", lists->blue},

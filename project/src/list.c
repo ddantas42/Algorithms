@@ -62,10 +62,31 @@ t_patiente	*pop_top(t_patiente **head)
 	return top_patient;
 }
 
+void	print_list(t_patiente *head)
+{
+	if (!head)
+	{
+		printf("\t\tNo patients in this list.\n");
+		return;
+	}
+
+	t_patiente *current = head;
+	char *color_names[] = {"Blue", "Green", "Yellow", "Orange", "Red", "None"};
+	while (current)
+	{
+		printf("\t\tID: %d, Name: %s, Age: %d, Color: %s\n", current->id, current->name, current->age, color_names[current->color]);
+		printf("\t\tArrived: %d, Triaged: %d, attended: %d\n", current->arrive_time, current->triage_time, current->attendance_start_time);
+		current = current->next;
+	}
+}
+
 /**
  * Get an array of lists ([blue, orange]) that are not null
  * I.e: If only Blue and Green exists, it will return the following array:
  * [blue, green, NULL, NULL, NULL]
+ * 
+ * This has more uses than it first seems.....
+ * 
  * @param lists Pointer to the lists structure containing all patient lists.
  * @return A pointer to an array of pointers to t_patiente lists.
  */

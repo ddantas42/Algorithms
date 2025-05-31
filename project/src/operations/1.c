@@ -17,7 +17,7 @@ void	register_new_patient(t_lists *lists, int current_time)
 	scanf("%s", new_patient->name);
 
 	new_patient->age = ler_int(PATIENTE_AGE, "Invalid age. Please enter a valid age between 0 and 120.\n", 0, 120, lists);
-	new_patient->color = -1;
+	new_patient->color = NO_COLOR;
 
 
 	new_patient->arrive_time = current_time;
