@@ -9,5 +9,5 @@ void 	visualize_patients_waiting_triage(t_lists *lists)
 	}
 
 	printf("Patients waiting for triage:\n");
-	print_list(lists->arrive);
+	print_list(lists, lists->arrive);
 }

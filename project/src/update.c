@@ -31,8 +31,7 @@ static void update_triage(t_lists *lists, int current_time, t_patiente ***color_
 			case ORANGE: insert(color_list[ORANGE], popped); break;
 			case RED: insert(color_list[RED], popped);	 break;
 		}
-		char *color_names[] = {"Blue", "Green", "Yellow", "Orange", "Red"};
-		printf("Patient %d (%s) is now waiting for attendance. Given the color %s\n", popped->id, popped->name, color_names[popped->color]);
+		printf("Patient %d (%s) is now waiting for attendance. Given the color %s\n", popped->id, popped->name, lists->color_names[popped->color]);
 		update_triage(lists, current_time, color_list);
 	}
 }

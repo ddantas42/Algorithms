@@ -17,6 +17,23 @@ static t_lists *init_lists()
 		printf("Failed to allocate memory for lists\n");
 		exit(1);
 	}
+
+	lists->color_names = (char **)calloc(6 + 1, sizeof(char *));
+	if (!lists->color_names)
+	{
+		free(lists);
+		printf("Failed to allocate memory for color names\n");
+		exit(1);
+	}
+	char *colors[] = {"Blue", "Green", "Yellow", "Orange", "Red", "None"};
+	for (int i = 0; i < 6; i++)
+	{
+		lists->color_names[i] = (char *)calloc(7 + 1, sizeof(char));
+		if (!lists->color_names[i])
+			free_lists(lists, "Failed to allocate memory for color names", 1);
+		strcpy(lists->color_names[i], colors[i]);
+	}
+	
 	return lists;
 }
 

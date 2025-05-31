@@ -62,7 +62,7 @@ t_patiente	*pop_top(t_patiente **head)
 	return top_patient;
 }
 
-void	print_list(t_patiente *head)
+void	print_list(t_lists *lists, t_patiente *head)
 {
 	if (!head)
 	{
@@ -71,10 +71,9 @@ void	print_list(t_patiente *head)
 	}
 
 	t_patiente *current = head;
-	char *color_names[] = {"Blue", "Green", "Yellow", "Orange", "Red", "None"};
 	while (current)
 	{
-		printf("\t\tID: %d, Name: %s, Age: %d, Color: %s\n", current->id, current->name, current->age, color_names[current->color]);
+		printf("\t\tID: %d, Name: %s, Age: %d, Color: %s\n", current->id, current->name, current->age, lists->color_names[current->color]);
 		printf("\t\tArrived: %d, Triaged: %d, attended: %d\n", current->arrive_time, current->triage_time, current->attendance_start_time);
 		current = current->next;
 	}

@@ -49,6 +49,9 @@ typedef struct s_lists
 
 	// After attendance, already attended
 	t_patiente *attended;
+
+	// Helper array to store color names
+	char **color_names;
 	
 } t_lists;
 
@@ -56,7 +59,7 @@ typedef struct s_lists
 void		insert(t_patiente **head, t_patiente *new_patient);
 t_patiente 	*pop_bottom(t_patiente **head);
 t_patiente	*pop_top(t_patiente **head);
-void		print_list(t_patiente *head);
+void		print_list(t_lists *lists, t_patiente *head);
 t_patiente	***get_waiting_for_triage_lists(t_lists *lists);
 
 /* Operations Functions */

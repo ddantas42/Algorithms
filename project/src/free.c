@@ -17,18 +17,28 @@ static void	free_list(t_patiente *head)
  */
 void	free_lists(t_lists *list, char *msg, int exit_status)
 {
-	if (!list)
-		return;
+	if (list)
+	{
+		if (list->color_names)
+		{
+			for (int i = 0; i < 6; ++i)
+				if (list->color_names[i])
+					free(list->color_names[i]);
+			free(list->color_names);
+		}
+		
+		t_patiente *lists[] = {
+			list->arrive, 
+			list->blue, list->green, list->yellow, list->orange,
+			list->red, list->triage, list->attended
+		};
+	
+		for (size_t i = 0; i < sizeof(lists) / sizeof(lists[0]); ++i)
+			if (lists[i])
+				free_list(lists[i]);
+		free(list);
+	}
 
-	t_patiente *lists[] = {
-		list->arrive, 
-		list->blue, list->green, list->yellow, list->orange,
-		list->red, list->triage, list->attended
-	};
-
-	for (size_t i = 0; i < sizeof(lists) / sizeof(lists[0]); ++i)
-		free_list(lists[i]);
-	free(list);
 
 	if (msg)
 		printf("%s\n", msg);
