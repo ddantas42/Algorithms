@@ -21,7 +21,8 @@ Current time: [%d:%.2d]\n\
 7. Check average wait time per queue between register and beginning of triage\n\
 8. Check average wait time per queue between beginning of triage and beginning of attendance\n\
 9. Check average wait time per queue between register and ending of attendance\n\
-10. Exit\n\
+10. View every list of patients\n\
+11. Exit\n\
 "
 
 /* Main Menu */

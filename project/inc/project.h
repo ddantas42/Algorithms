@@ -67,7 +67,8 @@ t_patiente	***get_waiting_for_triage_lists(t_lists *lists);
 /* Operations Functions */
 void	register_new_patient(t_lists *lists, int current_time);
 void	call_patient_to_triage(t_lists *lists, int current_time);
-void	visualize_patients_waiting_triage(t_lists *lists);
+
+void 	print_every_list(t_lists *lists);
 
 /* Free Functions */
 void	free_lists(t_lists *lists, char *msg, int exit_status);

@@ -11,26 +11,12 @@
 
 static t_lists *init_lists()
 {
-	t_lists *lists = (t_lists *)malloc(sizeof(t_lists));
+	t_lists *lists = (t_lists *)calloc(1, sizeof(t_lists));
 	if (!lists)
 	{
 		printf("Failed to allocate memory for lists\n");
 		exit(1);
 	}
-	lists->arrive = NULL;
-	
-	lists->triage = NULL;
-
-	lists->blue = NULL;
-	lists->green = NULL;
-	lists->yellow = NULL;
-	lists->orange = NULL;
-	lists->red = NULL;
-
-	lists->attendance = NULL;
-
-	lists->attended = NULL;
-
 	return lists;
 }
 
@@ -46,7 +32,7 @@ int main()
 	do
 	{
 		printf(MAIN_MENU, current_time / 60, current_time % 60);
-		option = ler_int(MENU_PROMPT,MENU_ERR, 0, 10, list);
+		option = ler_int(MENU_PROMPT,MENU_ERR, 0, 11, list);
 
 		switch (option)
 		{
@@ -54,9 +40,9 @@ int main()
 			case 1:	register_new_patient(list, current_time); break;
 			case 2:	call_patient_to_triage(list, current_time); break;
 
-			case 6:	visualize_patients_waiting_triage(list); break;
+			case 10: print_every_list(list); break;
 
-			case 10: printf("Exiting...\n"); break;
+			case 11: printf("Exiting...\n"); break;
 		}
 
 		// Update time
@@ -65,7 +51,7 @@ int main()
 			
 		update_patients(list, current_time);
 		
-	} while (option != 10);
+	} while (option != 11);
 
 	free_lists(list, "Exiting program. Freeing resources...\n", 0);
 
