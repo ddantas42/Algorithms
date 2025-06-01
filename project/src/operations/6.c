@@ -1,5 +1,12 @@
 #include "../../inc/project.h"
 
+/**
+ * Visualizes the patients currently waiting for triage.
+ * This function iterates through the list of patients waiting for triage
+ * and prints their details, including ID, name, age, color, and arrival time.
+ * If there are no patients waiting for triage, it prints a message indicating that.
+ * @param lists Pointer to the list of patients.
+ */
 void 	visualize_patients_waiting_triage(t_lists *lists)
 {
 	t_patient *current = NULL;

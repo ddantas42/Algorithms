@@ -6,9 +6,9 @@
  * If it does, the patient is moved to the appropriate color list based on their
  * color and their waiting time is updated.
  * It recursively calls itself to check the next patient in the triage list.
- * @lists: The lists of patients containing the triage and color lists.
- * @current_time: The current time in the simulation.
- * @color_list: A 2D array of pointers to color lists where patients will be moved.
+ * @param lists The lists of patients containing the triage and color lists.
+ * @param current_time The current time in the simulation.
+ * @param color_list A 2D array of pointers to color lists where patients will be moved.
 */
 static void update_triage(t_lists *lists, int current_time, t_patient ***color_list)
 {
@@ -32,6 +32,14 @@ static void update_triage(t_lists *lists, int current_time, t_patient ***color_l
 	update_triage(lists, current_time, color_list);
 }
 
+/**
+ * update_attendance - This function updates the attendance list by checking if the
+ * first patient in the attendance list has been there for more than 10 minutes.
+ * If they have, they are moved to the attended list and their attended time is updated.
+ * It recursively calls itself to check the next patient in the attendance list.
+ * @param lists The lists of patients containing the attendance and attended lists.
+ * @param current_time The current time in the simulation.
+*/
 static void update_attendance(t_lists *lists, int current_time)
 {
 	t_patient *popped = NULL;

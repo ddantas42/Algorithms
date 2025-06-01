@@ -1,5 +1,12 @@
 #include "../../inc/project.h"
 
+/**
+ * Debug function to print the details of a list of patients.
+ * This function iterates through the list of patients and prints their ID, name, age, color,
+ * and arrival time in a formatted manner.
+ * @param lists Pointer to the list of patients.
+ * @param head Pointer to the head of the patient list to be printed.
+ */
 void 	print_every_list(t_lists *lists)
 {
 	struct s_str_list {

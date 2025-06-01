@@ -14,6 +14,14 @@ static void print_color_of_list(t_lists *lists, t_patient *attended_list, int co
 	}
 }
 
+/**
+ * Visualizes the patients already attended by queue.
+ * This function iterates through the attended list and prints the details of patients
+ * who have already been attended, grouped by their color.
+ * It prints the patient ID, name, age, color, arrival time, and the time they finished attendance.
+ * If there are no patients already attended, it prints a message indicating that.
+ * @param lists Pointer to the list of patients.
+ */
 void visualize_patients_already_attended_by_queue(t_lists *lists)
 {
 
@@ -25,7 +33,7 @@ void visualize_patients_already_attended_by_queue(t_lists *lists)
 		return ;
 	}
 	
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		printf("\n%s:\n", lists->color_names[i]);
 		print_color_of_list(lists, lists->attended, i);

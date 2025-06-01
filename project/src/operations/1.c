@@ -1,5 +1,13 @@
 #include "../../inc/project.h"
 
+/**
+ * Registers a new patient in the system.
+ * This function allocates memory for a new patient, prompts the user for their name and age,
+ * and initializes the patient's attributes such as ID, color, arrival time, and various timestamps.
+ * The new patient is then inserted into the arrival list.
+ * @param lists Pointer to the list of patients.
+ * @param current_time The current time in minutes, used to set the patient's arrival time.
+*/
 void	register_new_patient(t_lists *lists, int current_time)
 {
 	static int patient_id = 0; // Static variable to keep track of patient IDs
