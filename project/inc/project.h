@@ -22,7 +22,7 @@ typedef struct s_patiente
 	int 			triage_time; // Time when the patient was called to triage
 	int 			waiting_attendance_time; // Time when the patient was called to wait for attendence
 	int 			attendance_start_time; // Time when the patient started being attended
-	int				already_attended_time;
+	int				already_attended_time; // Time when the patient was already attended
 
 	struct s_patiente *next;
 

@@ -1,33 +1,23 @@
 #include "../../inc/project.h"
 
-# define ATTENDED 0
-# define ATTENDANCE 1
-
-void custom_print_attended(t_patient *list, t_lists *lists, int option)
+static void print_color_of_list(t_lists *lists, t_patient *attended_list, int color)
 {
-	t_patient *current = list;
-
-	if (!current)
+	if (attended_list == NULL)
 	{
-		if (option == ATTENDED)
-			printf("No Patients attended yet.\n");
-		else if (option == ATTENDANCE)
-			printf("No patients in attendance yet.\n");
-		return;
+		printf("No patients attended in this color");
+		return ;
 	}
-
-	if (option == ATTENDED)
-		printf("Patients already attended:\n");
-	else if (option == ATTENDANCE)
-		printf("Patients being attended:\n");
-
-	while (current)
+	for (t_patient *current = attended_list; current != NULL; current = current->next)
 	{
-		printf("\tID: %d, Name: %s, Age: %d, Color: %s, Attendance Start Time: %d\n",
-			   current->id, current->name, current->age,
-			   lists->color_names[current->color], current->attendance_start_time);
-		current = current->next;
+		if (current->color == color)
+		{
+			printf("\tPatient ID: %d, Name: %s, Age: %d, Color: %s, Arrive Time: %d:%.2d, Finished attendance at: %d:%.2d\n",
+				current->id, current->name, current->age,
+				lists->color_names[current->color],
+				TIME(current->arrive_time), TIME(current->already_attended_time));
+		}
 	}
+	
 }
 
 
@@ -35,7 +25,17 @@ void visualize_patients_already_attended_by_queue(t_lists *lists)
 {
 
 	printf("\n ---- Patients Already Attended by Queue ---- \n");
+	
+	if (!lists->attended)
+	{
+		printf("No patients already attended\n");
+		return ;
+	}
+	
+	for (int i = 0; i < 6; i++)
+	{
+		printf("\n%s:\n", lists->color_names[i]);
+		print_color_of_list(lists, lists->attended, i);
+	}
 
-	custom_print_attended(lists->attendance, lists, ATTENDANCE);
-	custom_print_attended(lists->attended, lists, ATTENDED);
 }

@@ -31,7 +31,7 @@ static void update_triage(t_lists *lists, int current_time, t_patient ***color_l
 			case ORANGE: insert(color_list[ORANGE], popped); break;
 			case RED: insert(color_list[RED], popped);	 break;
 		}
-		printf("Patient %d (%s) is now waiting for attendance. Given the color %s\n", popped->id, popped->name, lists->color_names[popped->color]);
+		printf("Patient %d (%s) is now waiting for attendance. Given the color %s at %d:%.2d\n", popped->id, popped->name, lists->color_names[popped->color], TIME(popped->waiting_attendance_time));
 		update_triage(lists, current_time, color_list);
 	}
 }
@@ -48,9 +48,9 @@ static void update_attendance(t_lists *lists, int current_time)
 		if (current_time - lists->attendance->attendance_start_time >= ATTENDANCE_TIME)
 			return ;
 		popped = pop_top(&lists->attendance);
-		popped->attendance_start_time = current_time;
+		popped->already_attended_time = popped->attendance_start_time + ATTENDANCE_TIME;
 		insert(&lists->attended, popped);
-		printf("Patient %d (%s) has been attended at time %d:%.2d\n", popped->id, popped->name, current_time / 60, current_time % 60);
+		printf("Patient %d (%s) has been attended at time %d:%.2d\n", popped->id, popped->name, TIME(popped->already_attended_time));
 	}
 }
 

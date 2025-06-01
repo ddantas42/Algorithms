@@ -3,14 +3,17 @@
 void	register_new_patient(t_lists *lists, int current_time)
 {
 	static int patient_id = 0; // Static variable to keep track of patient IDs
-	t_patient *new_patient = (t_patient *)malloc(sizeof(t_patient));
+	t_patient *new_patient = NULL;
+
+	printf("\n ---- Registering new patient ---- \n");
+	
+	new_patient = (t_patient *)malloc(sizeof(t_patient));
 	if (!new_patient)
 	{
-		printf("Failed to allocate memory for new patient");
+		free_lists(lists, "Failed to allocate memory for new patient", 1);
 		return;
 	}
 
-	printf("\n ---- Registering new patient ---- \n");
 
 	new_patient->id = patient_id++;	
 	printf("Enter patient's name: ");
@@ -22,6 +25,7 @@ void	register_new_patient(t_lists *lists, int current_time)
 	new_patient->triage_time = -1;
 	new_patient->attendance_start_time = -1;
 	new_patient->waiting_attendance_time = -1;
+	new_patient->already_attended_time = -1;
 	new_patient->next = NULL;
 
 	insert(&lists->arrive, new_patient);

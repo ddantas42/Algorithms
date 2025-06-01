@@ -18,7 +18,7 @@ static t_patient *select_patient(t_patient ***non_null_lists, int size)
 	if (size == 0)
 		return NULL;
 	else if (size == 1)
-		return pop_bottom(non_null_lists[0]);
+		return pop_top(non_null_lists[0]);
 	else if (size == 2)
 	{
 		limits[0] = 25;
@@ -35,14 +35,14 @@ static t_patient *select_patient(t_patient ***non_null_lists, int size)
 	random_number = (rand() % 100) + 1; // 1 to 100
 
 	if (random_number <= limits[0])
-		return pop_bottom(non_null_lists[0]);
+		return pop_top(non_null_lists[0]);
 	else if (random_number <= limits[1])
-		return pop_bottom(non_null_lists[1]);
+		return pop_top(non_null_lists[1]);
 	else if (random_number <= limits[2])
-		return pop_bottom(non_null_lists[2]);
+		return pop_top(non_null_lists[2]);
 
 	// If we reach here, it means the random number is greater than limits[2]
-	return pop_bottom(non_null_lists[3]);
+	return pop_top(non_null_lists[3]);
 }
 
 /**
@@ -57,7 +57,7 @@ void	doctor_attendance_on_next_patient(t_lists *lists, int current_time)
 	t_patient	***non_null_lists = NULL;
 	int			size_of_lists = 0;
 
-	printf("\n ---- Call patient to triage ---- \n");
+	printf("\n ---- Call patient to Attendance ---- \n");
 	
 	if (lists->red == NULL)
 	{

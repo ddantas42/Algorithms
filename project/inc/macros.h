@@ -10,6 +10,8 @@
 # define RED 4
 # define NO_COLOR 5
 
+# define TIME(t) ((t) / 60), ((t) % 60)
+
 # define MAIN_MENU "\n\
 Current time: [%d:%.2d] (%d)\n\
 0. Pass time\n\

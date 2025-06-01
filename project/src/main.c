@@ -48,7 +48,7 @@ int main()
 	// clear_screen();
 	do
 	{
-		printf(MAIN_MENU, current_time / 60, current_time % 60, current_time);
+		printf(MAIN_MENU, TIME(current_time), current_time);
 		option = ler_int(MENU_PROMPT,MENU_ERR, 0, 11, list);
 
 		switch (option)
@@ -58,6 +58,7 @@ int main()
 			case 2:	call_patient_to_triage(list, current_time); break;
 			case 3: doctor_attendance_on_next_patient(list, current_time); break;
 
+			// case 4: vi
 			case 5: visualize_patients_already_attended_by_queue(list); break;
 			case 6: visualize_patients_waiting_triage(list); break;
 			
