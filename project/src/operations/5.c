@@ -2,11 +2,6 @@
 
 static void print_color_of_list(t_lists *lists, t_patient *attended_list, int color)
 {
-	if (attended_list == NULL)
-	{
-		printf("No patients attended in this color");
-		return ;
-	}
 	for (t_patient *current = attended_list; current != NULL; current = current->next)
 	{
 		if (current->color == color)
@@ -17,9 +12,7 @@ static void print_color_of_list(t_lists *lists, t_patient *attended_list, int co
 				TIME(current->arrive_time), TIME(current->already_attended_time));
 		}
 	}
-	
 }
-
 
 void visualize_patients_already_attended_by_queue(t_lists *lists)
 {
@@ -37,5 +30,4 @@ void visualize_patients_already_attended_by_queue(t_lists *lists)
 		printf("\n%s:\n", lists->color_names[i]);
 		print_color_of_list(lists, lists->attended, i);
 	}
-
 }

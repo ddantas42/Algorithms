@@ -67,6 +67,7 @@ t_patient	***get_waiting_for_attendance_lists(t_lists *lists);
 void	register_new_patient(t_lists *lists, int current_time);
 void	call_patient_to_triage(t_lists *lists, int current_time);
 void	doctor_attendance_on_next_patient(t_lists *lists, int current_time);
+void	visualize_patients_being_treated_by_queue(t_lists *lists);
 
 void	visualize_patients_already_attended_by_queue(t_lists *lists);
 void 	visualize_patients_waiting_triage(t_lists *lists);
