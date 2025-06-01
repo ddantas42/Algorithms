@@ -36,7 +36,7 @@ void	avg_time_beginning_of_triage_and_beginning_of_attendance_per_queue(t_lists 
 	{
 		if (count_per_color[i] == 0)
 		{
-			printf("\tNo patients in %s queue.\n", lists->color_names[i]);
+			printf("\tNo patients in %s queue began attedance.\n", lists->color_names[i]);
 			continue;
 		}
 		printf("Average wait time between beginning of triage and beginning of attendance for %s queue: %.2f minutes\n",

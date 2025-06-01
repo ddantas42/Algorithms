@@ -62,7 +62,7 @@ int main()
 			case 6: visualize_patients_waiting_triage(list); break;
 			case 7: avg_time_register_and_beginning_triage_per_queue(list); break; 
 			case 8: avg_time_beginning_of_triage_and_beginning_of_attendance_per_queue(list); break;
-			// case 9:
+			case 9: avg_time_register_end_attendnance_per_queue(list); break;
 			case 10: print_every_list(list); break;
 			case 11: printf("Exiting...\n"); break;
 		}
