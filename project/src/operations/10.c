@@ -18,7 +18,7 @@ void 	print_every_list(t_lists *lists)
 		{"Patients already attended:\n", lists->attended}
 	};
 
-	for (long unsigned int i = 0; i < sizeof(str_list) / sizeof(str_list[0]); i++)
+	for (size_t i = 0; i < sizeof(str_list) / sizeof(str_list[0]); i++)
 	{
 		if (str_list[i].head == NULL)
 			continue;

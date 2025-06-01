@@ -60,7 +60,7 @@ int main()
 			case 4: visualize_patients_being_treated_by_queue(list); break; 
 			case 5: visualize_patients_already_attended_by_queue(list); break;
 			case 6: visualize_patients_waiting_triage(list); break;
-			// case 7: 
+			case 7: average_wait_time_between_register_and_beginning_triage_per_queue(list); break; 
 			// case 8:
 			// case 9:
 			case 10: print_every_list(list); break;
