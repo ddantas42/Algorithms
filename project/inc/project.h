@@ -22,6 +22,7 @@ typedef struct s_patiente
 	int 			triage_time; // Time when the patient was called to triage
 	int 			waiting_attendance_time; // Time when the patient was called to wait for attendence
 	int 			attendance_start_time; // Time when the patient started being attended
+	int				already_attended_time;
 
 	struct s_patiente *next;
 
@@ -67,6 +68,7 @@ void	register_new_patient(t_lists *lists, int current_time);
 void	call_patient_to_triage(t_lists *lists, int current_time);
 void	doctor_attendance_on_next_patient(t_lists *lists, int current_time);
 
+void	visualize_patients_already_attended_by_queue(t_lists *lists);
 void 	visualize_patients_waiting_triage(t_lists *lists);
 
 void 	print_every_list(t_lists *lists);

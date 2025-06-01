@@ -45,7 +45,7 @@ static void update_attendance(t_lists *lists, int current_time)
 
 	if (lists->attendance)
 	{
-		if (current_time - lists->attendance->attendance_start_time < ATTENDANCE_TIME)
+		if (current_time - lists->attendance->attendance_start_time >= ATTENDANCE_TIME)
 			return ;
 		popped = pop_top(&lists->attendance);
 		popped->attendance_start_time = current_time;

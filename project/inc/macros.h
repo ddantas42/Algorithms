@@ -25,12 +25,15 @@ Current time: [%d:%.2d] (%d)\n\
 10. View every list of patients\n\
 11. Exit\n\
 "
+
 /* Modifiable Macros */
+
 
 # define TRIAGE_TIME 10 // Time taken in triage in minutes
 # define ATTENDANCE_TIME 30 // Time taken in attendance in minutes
 
 # define EXIT_ON_EOF 1 // If set to 1, the program will exit if EOF is reached (Ctrl+D on Linux, Ctrl+Z on Windows)
+# define LEAK_DEBUG 0 // If set to 1, the program will print debug information about memory leaks
 
 /* Prompts and Errors */
 # define MENU_PROMPT "Option: "

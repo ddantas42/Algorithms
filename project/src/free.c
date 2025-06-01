@@ -6,6 +6,11 @@ static void	free_list(t_patient *head)
 		return;
 	if (head->next)
 		free_list(head->next);
+
+
+	if (LEAK_DEBUG)
+		printf("DEBUG:\t \tFreeing patient id=%d, addr=%p\n", head->id, (void*)head);
+	
 	free(head);
 }
 
@@ -28,14 +33,20 @@ void	free_lists(t_lists *list, char *msg, int exit_status)
 		}
 		
 		t_patient *lists[] = {
-			list->arrive, 
-			list->blue, list->green, list->yellow, list->orange,
-			list->red, list->triage, list->attended
+			list->arrive, list->triage, 
+			list->blue, list->green, list->yellow, list->orange, list->red, 
+			list->attendance, list->attended
 		};
 	
 		for (size_t i = 0; i < sizeof(lists) / sizeof(lists[0]); ++i)
+		{
 			if (lists[i])
+			{
+				if (LEAK_DEBUG)
+					printf("DEBUG:\t Freeing list %zu, head=%p\n", i, (void*)lists[i]);
 				free_list(lists[i]);
+			}
+		}
 		free(list);
 	}
 

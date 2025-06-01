@@ -27,4 +27,8 @@ void	register_new_patient(t_lists *lists, int current_time)
 	insert(&lists->arrive, new_patient);
 
 	printf("Patient %s registered successfully.\n", new_patient->name);
+
+	
+	if (LEAK_DEBUG)
+		printf("DEBUG:\t Allocated patient id=%d, addr=%p\n", new_patient->id, (void*)new_patient);
 }
