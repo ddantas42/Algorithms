@@ -3,7 +3,7 @@
 void	register_new_patient(t_lists *lists, int current_time)
 {
 	static int patient_id = 0; // Static variable to keep track of patient IDs
-	t_patiente *new_patient = (t_patiente *)malloc(sizeof(t_patiente));
+	t_patient *new_patient = (t_patient *)malloc(sizeof(t_patient));
 	if (!new_patient)
 	{
 		printf("Failed to allocate memory for new patient");

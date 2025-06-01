@@ -4,7 +4,7 @@ void 	print_every_list(t_lists *lists)
 {
 	struct s_str_list {
 		char str[40];
-		t_patiente *head;
+		t_patient *head;
 	}
 	str_list[] = {
 		{"Waiting room patients:\n", lists->arrive},

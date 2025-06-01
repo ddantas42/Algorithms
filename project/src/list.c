@@ -8,13 +8,13 @@
  * @param head Pointer to the head of the linked list.
  * @param new_patient Pointer to the new patient to be inserted.
  */
-void	insert(t_patiente **head, t_patiente *new_patient)
+void	insert(t_patient **head, t_patient *new_patient)
 {
 	if (*head == NULL)
 		*head = new_patient;
 	else
 	{
-		t_patiente *current = *head;
+		t_patient *current = *head;
 
 		while (current->next != NULL)
 			current = current->next;
@@ -25,13 +25,13 @@ void	insert(t_patiente **head, t_patiente *new_patient)
 }
 
 // Pop the bottom node and returns it.
-t_patiente 	*pop_bottom(t_patiente **head)
+t_patient 	*pop_bottom(t_patient **head)
 {
 	if (*head == NULL)
 		return NULL;
 
-	t_patiente *current = *head;
-	t_patiente *prev = NULL;
+	t_patient *current = *head;
+	t_patient *prev = NULL;
 
 	while (current->next != NULL)
 	{
@@ -48,9 +48,9 @@ t_patiente 	*pop_bottom(t_patiente **head)
 }
 
 // Pop the top node and returns it.
-t_patiente	*pop_top(t_patiente **head)
+t_patient	*pop_top(t_patient **head)
 {
-	t_patiente *top_patient = NULL;
+	t_patient *top_patient = NULL;
 	
 	if (*head == NULL)
 		return NULL;
@@ -62,7 +62,7 @@ t_patiente	*pop_top(t_patiente **head)
 	return top_patient;
 }
 
-void	print_list(t_lists *lists, t_patiente *head)
+void	print_list(t_lists *lists, t_patient *head)
 {
 	if (!head)
 	{
@@ -70,7 +70,7 @@ void	print_list(t_lists *lists, t_patiente *head)
 		return;
 	}
 
-	t_patiente *current = head;
+	t_patient *current = head;
 	while (current)
 	{
 		printf("\t\tID: %d, Name: %s, Age: %d, Color: %s\n", current->id, current->name, current->age, lists->color_names[current->color]);
@@ -87,12 +87,13 @@ void	print_list(t_lists *lists, t_patiente *head)
  * This has more uses than it first seems.....
  * 
  * @param lists Pointer to the lists structure containing all patient lists.
- * @return A pointer to an array of pointers to t_patiente lists.
+ * @return A pointer to an array of pointers to t_patient lists.
  */
-t_patiente	***get_waiting_for_attendance_lists(t_lists *lists)
+t_patient	***get_waiting_for_attendance_lists(t_lists *lists)
 {
-	t_patiente ***non_null_lists = (t_patiente ***)calloc(sizeof(t_patiente **), (4 + 1));
+	t_patient ***non_null_lists = (t_patient ***)calloc(sizeof(t_patient **), (4 + 1));
 	int			i = 0;
+	
 	if (!non_null_lists)
 		free_lists(lists, "Failed to allocate memory for non_null_lists\n", 1);
 	

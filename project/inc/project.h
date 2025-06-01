@@ -25,30 +25,30 @@ typedef struct s_patiente
 
 	struct s_patiente *next;
 
-} t_patiente;
+} t_patient;
 
 
 typedef struct s_lists
 {
 	
 	// After Register, currently in Waiting room
-	t_patiente *arrive;
+	t_patient *arrive;
 	
 	// After Waiting room, currently in Triage
-	t_patiente *triage;
+	t_patient *triage;
 	
 	// Waiting room lists to be attended
-	t_patiente *blue;
-	t_patiente *green;
-	t_patiente *yellow;
-	t_patiente *orange;
-	t_patiente *red;
+	t_patient *blue;
+	t_patient *green;
+	t_patient *yellow;
+	t_patient *orange;
+	t_patient *red;
 
 	// After Waiting for attendance, currently In attendance
-	t_patiente *attendance;
+	t_patient *attendance;
 
 	// After attendance, already attended
-	t_patiente *attended;
+	t_patient *attended;
 
 	// Helper array to store color names
 	char **color_names;
@@ -56,11 +56,11 @@ typedef struct s_lists
 } t_lists;
 
 /* List Functions */
-void		insert(t_patiente **head, t_patiente *new_patient);
-t_patiente 	*pop_bottom(t_patiente **head);
-t_patiente	*pop_top(t_patiente **head);
-void		print_list(t_lists *lists, t_patiente *head);
-t_patiente	***get_waiting_for_attendance_lists(t_lists *lists);
+void		insert(t_patient **head, t_patient *new_patient);
+t_patient 	*pop_bottom(t_patient **head);
+t_patient	*pop_top(t_patient **head);
+void		print_list(t_lists *lists, t_patient *head);
+t_patient	***get_waiting_for_attendance_lists(t_lists *lists);
 
 /* Operations Functions */
 void	register_new_patient(t_lists *lists, int current_time);

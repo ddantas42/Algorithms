@@ -2,7 +2,7 @@
 
 void	call_patient_to_triage(t_lists *lists, int current_time)
 {
-	t_patiente *patiente_to_triage = NULL;
+	t_patient *patiente_to_triage = NULL;
 
 	if (lists->arrive == NULL)
 	{

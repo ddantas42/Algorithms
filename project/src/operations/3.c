@@ -8,11 +8,10 @@
  * If there are 3 lists: List1 15%, List2 25% and List3 60%
  * If there are 2 lists: List1 25% and List2 75%
  * If there is 1 list:	 List1 100%
- * List1 has priority over List2, List2 over List3 and List3 over List4
+ * List4 has priority over List3, List3 over List2 and List2 over List1
  */
-static t_patiente *select_patient(t_patiente ***non_null_lists, int size)
+static t_patient *select_patient(t_patient ***non_null_lists, int size)
 {
-	t_patiente *selected_patient = NULL;
 	int 		random_number = 0;
 	int			limits[4] = {10, 25, 50, 100}; // basic case when size == 4
 	
@@ -36,15 +35,13 @@ static t_patiente *select_patient(t_patiente ***non_null_lists, int size)
 	random_number = (rand() % 100) + 1; // 1 to 100
 
 	if (random_number <= limits[0])
-		selected_patient = pop_bottom(non_null_lists[0]);
+		return pop_bottom(non_null_lists[0]);
 	else if (random_number <= limits[1])
-		selected_patient = pop_bottom(non_null_lists[1]);
+		return pop_bottom(non_null_lists[1]);
 	else if (random_number <= limits[2])
-		selected_patient = pop_bottom(non_null_lists[2]);
+		return pop_bottom(non_null_lists[2]);
 	else if (random_number <= limits[3])
-		selected_patient = pop_bottom(non_null_lists[3]);
-
-	return selected_patient;
+		return pop_bottom(non_null_lists[3]);
 }
 
 /**
@@ -55,8 +52,8 @@ static t_patiente *select_patient(t_patiente ***non_null_lists, int size)
  */
 void	doctor_attendance_on_next_patient(t_lists *lists, int current_time)
 {
-	t_patiente *patiente_to_attendance = NULL;
-	t_patiente	***non_null_lists = NULL;
+	t_patient *patiente_to_attendance = NULL;
+	t_patient	***non_null_lists = NULL;
 	int			size_of_lists = 0;
 
 	printf("\n ---- Call patient to triage ---- \n");

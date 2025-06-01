@@ -10,9 +10,9 @@
  * @current_time: The current time in the simulation.
  * @color_list: A 2D array of pointers to color lists where patients will be moved.
 */
-static void update_triage(t_lists *lists, int current_time, t_patiente ***color_list)
+static void update_triage(t_lists *lists, int current_time, t_patient ***color_list)
 {
-	t_patiente *popped = NULL;
+	t_patient *popped = NULL;
 	
 	if (lists->triage == NULL)
 		return ;
@@ -43,7 +43,7 @@ static void update_triage(t_lists *lists, int current_time, t_patiente ***color_
 */
 void 	update_patients(t_lists *lists, int current_time)
 {
-	t_patiente ***color_list = (t_patiente ***)calloc(sizeof(t_patiente **), (4 + 1));
+	t_patient ***color_list = (t_patient ***)calloc(sizeof(t_patient **), (4 + 1));
 
 	if (!color_list)
 		free_lists(lists, "Malloc error on: ***color_list\n", 1);

@@ -1,6 +1,6 @@
 #include "../inc/project.h"
 
-static void	free_list(t_patiente *head)
+static void	free_list(t_patient *head)
 {
 	if (!head)
 		return;
@@ -27,7 +27,7 @@ void	free_lists(t_lists *list, char *msg, int exit_status)
 			free(list->color_names);
 		}
 		
-		t_patiente *lists[] = {
+		t_patient *lists[] = {
 			list->arrive, 
 			list->blue, list->green, list->yellow, list->orange,
 			list->red, list->triage, list->attended
