@@ -57,13 +57,13 @@ int main()
 			case 1:	register_new_patient(list, current_time); break;
 			case 2:	call_patient_to_triage(list, current_time); break;
 			case 3: doctor_attendance_on_next_patient(list, current_time); break;
-
-			// case 4: vi
+			// case 4: 
 			case 5: visualize_patients_already_attended_by_queue(list); break;
 			case 6: visualize_patients_waiting_triage(list); break;
-			
+			// case 7: 
+			// case 8:
+			// case 9:
 			case 10: print_every_list(list); break;
-
 			case 11: printf("Exiting...\n"); break;
 		}
 
