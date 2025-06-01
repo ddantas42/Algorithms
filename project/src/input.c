@@ -1,6 +1,6 @@
 #include "../inc/project.h"
 
-/*
+/**
  * verificar_formato - Checks the format of the input read by scanf.
  * @param scanf_nbr: The return value of scanf indicating the number of items read.
  * @param lists: Pointer to the lists structure for error handling.
@@ -11,7 +11,7 @@ static int verificar_formato(int scanf_nbr, t_lists *lists)
 	if (scanf_nbr > 0)
 		return 0;
 
-	if (scanf_nbr == EOF)
+	if (EXIT_ON_EOF && scanf_nbr == EOF)
 		free_lists(lists, "Error: EOF detected. Closing...\n", 1);
 		
 	printf("Error: Invalid Input\n");
@@ -23,7 +23,7 @@ static int verificar_formato(int scanf_nbr, t_lists *lists)
 }
 
 
-/*
+/**
  * ler_int - Reads an integer from the user with a prompt and error message.
  * @param prompt: The prompt message to display to the user.
  * @param err: The error message to display if the input is invalid.

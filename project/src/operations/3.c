@@ -13,7 +13,7 @@
 static t_patient *select_patient(t_patient ***non_null_lists, int size)
 {
 	int 		random_number = 0;
-	int			limits[4] = {10, 25, 50, 100}; // basic case when size == 4
+	int			limits[3] = {10, 25, 50}; // basic case when size == 4
 	
 	if (size == 0)
 		return NULL;
@@ -40,8 +40,9 @@ static t_patient *select_patient(t_patient ***non_null_lists, int size)
 		return pop_bottom(non_null_lists[1]);
 	else if (random_number <= limits[2])
 		return pop_bottom(non_null_lists[2]);
-	else if (random_number <= limits[3])
-		return pop_bottom(non_null_lists[3]);
+
+	// If we reach here, it means the random number is greater than limits[2]
+	return pop_bottom(non_null_lists[3]);
 }
 
 /**
@@ -63,8 +64,11 @@ void	doctor_attendance_on_next_patient(t_lists *lists, int current_time)
 		// get non null lists and get total of them
 		non_null_lists = get_waiting_for_attendance_lists(lists);
 		for (int i = 0; i < 4; i++)
-			if (non_null_lists[i] != NULL)
-				size_of_lists++; 
+		{
+			if (non_null_lists[i] == NULL)
+				break; // Slight optimization, no need to check the rest if we already found a NULL
+			size_of_lists++;
+		}
 		
 		patiente_to_attendance = select_patient(non_null_lists, size_of_lists);				
 		if (non_null_lists)
@@ -79,7 +83,7 @@ void	doctor_attendance_on_next_patient(t_lists *lists, int current_time)
 	else 
 	{
 		printf("Patient %s selected for attendance", patiente_to_attendance->name);
-		patiente_to_attendance->triage_time = current_time;
+		patiente_to_attendance->attendance_start_time = current_time;
 		insert(&lists->attendance, patiente_to_attendance);
 	}
 }

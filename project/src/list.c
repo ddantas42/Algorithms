@@ -74,7 +74,7 @@ void	print_list(t_lists *lists, t_patient *head)
 	while (current)
 	{
 		printf("\t\tID: %d, Name: %s, Age: %d, Color: %s\n", current->id, current->name, current->age, lists->color_names[current->color]);
-		printf("\t\tArrived: %d, Triaged: %d, attended: %d\n", current->arrive_time, current->triage_time, current->attendance_start_time);
+		printf("\t\tArrived: %d, Triage_start: %d, waiting_attendace: %d, start_attendance: %d\n", current->arrive_time, current->triage_time, current->waiting_attendance_time, current->attendance_start_time);
 		current = current->next;
 	}
 }

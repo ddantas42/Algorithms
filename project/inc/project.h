@@ -18,10 +18,10 @@ typedef struct s_patiente
 	char 			name[101];
 	int 			age;
 	int 			color;
-	int  			arrive_time;
-	int 			triage_time;
-	int 			waiting_attendance_time;
-	int 			attendance_start_time;
+	int  			arrive_time; // Time when the patient arrived in the waiting room
+	int 			triage_time; // Time when the patient was called to triage
+	int 			waiting_attendance_time; // Time when the patient was called to wait for attendence
+	int 			attendance_start_time; // Time when the patient started being attended
 
 	struct s_patiente *next;
 
