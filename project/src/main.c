@@ -53,16 +53,16 @@ int main()
 
 		switch (option)
 		{
-			case 0: current_time += ler_int(TIME_PROMPT, TIME_ERR, 0, 1440, list); break;
-			case 1:	register_new_patient(list, current_time); break;
-			case 2:	call_patient_to_triage(list, current_time); break;
-			case 3: doctor_attendance_on_next_patient(list, current_time); break;
-			case 4: visualize_patients_being_treated_by_queue(list); break; 
-			case 5: visualize_patients_already_attended_by_queue(list); break;
-			case 6: visualize_patients_waiting_triage(list); break;
-			case 7: avg_time_register_and_beginning_triage_per_queue(list); break; 
-			case 8: avg_time_beginning_of_triage_and_beginning_of_attendance_per_queue(list); break;
-			case 9: avg_time_register_end_attendnance_per_queue(list); break;
+			case 0:  current_time += ler_int(TIME_PROMPT, TIME_ERR, 0, 1440, list); break;
+			case 1:	 register_new_patient(list, current_time); break;
+			case 2:	 call_patient_to_triage(list, current_time); break;
+			case 3:  doctor_attendance_on_next_patient(list, current_time); break;
+			case 4:  visualize_patients_being_treated_by_queue(list); break; 
+			case 5:  visualize_patients_already_attended_by_queue(list); break;
+			case 6:  visualize_patients_waiting_triage(list); break;
+			case 7:  avg_time_register_and_beginning_triage_per_queue(list); break; 
+			case 8:  avg_time_beginning_of_triage_and_beginning_of_attendance_per_queue(list); break;
+			case 9:  avg_time_register_end_attendnance_per_queue(list); break;
 			case 10: print_every_list(list); break;
 			case 11: printf("Exiting...\n"); break;
 		}
