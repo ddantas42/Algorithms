@@ -14,15 +14,15 @@
 
 typedef struct s_patiente
 {
-	int 			id;
-	char 			name[101];
-	int 			age;
-	int 			color;
-	int  			arrive_time; // Time when the patient arrived in the waiting room
-	int 			triage_time; // Time when the patient was called to triage
-	int 			waiting_attendance_time; // Time when the patient was called to wait for attendence
-	int 			attendance_start_time; // Time when the patient started being attended
-	int				already_attended_time; // Time when the patient was already attended
+	int 	id;
+	char 	name[101];
+	int 	age;
+	int 	color;
+	int  	arrive_time; // Time when the patient arrived in the waiting room
+	int 	triage_time; // Time when the patient was called to triage
+	int 	waiting_attendance_time; // Time when the patient was called to wait for attendence
+	int 	attendance_start_time; // Time when the patient started being attended
+	int		already_attended_time; // Time when the patient was already attended
 
 	struct s_patiente *next;
 
@@ -33,26 +33,26 @@ typedef struct s_lists
 {
 	
 	// After Register, currently in Waiting room
-	t_patient *arrive;
+	t_patient	*arrive;
 	
 	// After Waiting room, currently in Triage
-	t_patient *triage;
+	t_patient	*triage;
 	
 	// Waiting room lists to be attended
-	t_patient *blue;
-	t_patient *green;
-	t_patient *yellow;
-	t_patient *orange;
-	t_patient *red;
+	t_patient	*blue;
+	t_patient	*green;
+	t_patient	*yellow;
+	t_patient	*orange;
+	t_patient	*red;
 
 	// After Waiting for attendance, currently In attendance
-	t_patient *attendance;
+	t_patient	*attendance;
 
 	// After attendance, already attended
-	t_patient *attended;
+	t_patient	*attended;
 
 	// Helper array to store color names
-	char **color_names;
+	char		**color_names;
 	
 } t_lists;
 

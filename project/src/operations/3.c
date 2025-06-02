@@ -41,7 +41,6 @@ static t_patient *select_patient(t_patient ***non_null_lists, int size)
 	else if (random_number <= limits[2])
 		return pop_top(non_null_lists[2]);
 
-	// If we reach here, it means the random number is greater than limits[2]
 	return pop_top(non_null_lists[3]);
 }
 

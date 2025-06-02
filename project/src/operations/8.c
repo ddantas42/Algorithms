@@ -28,7 +28,7 @@ static void print_times(t_lists *lists, int *wait_timer_per_color, int *count_pe
 	{
 		if (count_per_color[i] == 0)
 		{
-			printf("\tNo patients in %s queue began attendance.\n", lists->color_names[i]);
+			printf("No patients in %s queue began attendance.\n", lists->color_names[i]);
 			continue;
 		}
 		avg_time = (double)wait_timer_per_color[i] / count_per_color[i];

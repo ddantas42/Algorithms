@@ -1,14 +1,5 @@
 #include "../inc/project.h"
 
-// static void clear_screen()
-// {
-// 	#ifdef _WIN32
-// 	    system("cls");
-// 	#else
-// 	    system("clear");
-// 	#endif
-// }
-
 static t_lists *init_lists()
 {
 	t_lists *lists = (t_lists *)calloc(1, sizeof(t_lists));
