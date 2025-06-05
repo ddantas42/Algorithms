@@ -2,7 +2,7 @@
 This project is about making queue system for hospital using linked list in C programming.
 
 # The problem
-ER in hospitals is constant stressfull period, between people coming in, triage and then getting the help they need, a lot of stress can build up not only for the patients but for the staff as well.
+ER in hospitals are a constant stressfull period, between people coming in, triage and then getting the help they need, a lot of stress can build up not only for the patients but for the staff as well.
 
 # Solution
 A program that automatizes with a few inputs the registering and exiting of patients, while logging everything along the way, and possible to keep track of how many and a few statistics options.

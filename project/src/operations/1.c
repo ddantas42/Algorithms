@@ -4,7 +4,7 @@
  * Registers a new patient in the system.
  * This function allocates memory for a new patient, prompts the user for their name and age,
  * and initializes the patient's attributes such as ID, color, arrival time, and various timestamps.
- * The new patient is then inserted into the arrival list.
+ * The new patient is then inserted into the arrived list.
  * @param lists Pointer to the list of patients.
  * @param current_time The current time in minutes, used to set the patient's arrival time.
 */
@@ -27,7 +27,7 @@ void	register_new_patient(t_lists *lists, int current_time)
 	printf("Enter patient's name: ");
 	scanf("%s", new_patient->name);
 
-	new_patient->age = ler_int(PATIENTE_AGE_PROMPT, PATIENT_AGE_ERR, 0, 150, lists);
+	new_patient->age = read_int(PATIENTE_AGE_PROMPT, PATIENT_AGE_ERR, 0, 150, lists);
 	new_patient->color = NO_COLOR;
 	new_patient->arrive_time = current_time;
 	new_patient->triage_time = -1;

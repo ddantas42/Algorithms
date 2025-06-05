@@ -45,10 +45,10 @@ static t_patient *select_patient(t_patient ***non_null_lists, int size)
 }
 
 /**
- * Calls a person to triage based on colors and time spent
- * A patiente with red color will be immediatly called if there are any
- * After that each color has a chance of getting called, only one will be selected
- * Blue has 10%, Green has 15%, Yellow has 25% and Orange has 50%
+ * Calls a person to doctor attendance based on colors and time spent
+ * A patiente with red color will be immediatly called if there arent any other
+ * @param lists Pointer to the list of patients.
+ * @param current_time The current time in minutes, used to set the patient's attendance start time.
  */
 void	doctor_attendance_on_next_patient(t_lists *lists, int current_time)
 {

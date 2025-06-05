@@ -36,15 +36,14 @@ int main()
 	// Time in minutes
 	int		current_time = 0;
 	
-	// clear_screen();
 	do
 	{
 		printf(MAIN_MENU, TIME(current_time), current_time);
-		option = ler_int(MENU_PROMPT,MENU_ERR, 0, 11, list);
+		option = read_int(MENU_PROMPT,MENU_ERR, 0, 11, list);
 
 		switch (option)
 		{
-			case 0:  current_time += ler_int(TIME_PROMPT, TIME_ERR, 0, 1440, list); break;
+			case 0:  current_time += read_int(TIME_PROMPT, TIME_ERR, 0, 1440, list); break;
 			case 1:	 register_new_patient(list, current_time); break;
 			case 2:	 call_patient_to_triage(list, current_time); break;
 			case 3:  doctor_attendance_on_next_patient(list, current_time); break;

@@ -2,10 +2,8 @@
 
 /**
  * Debug function to print the details of a list of patients.
- * This function iterates through the list of patients and prints their ID, name, age, color,
- * and arrival time in a formatted manner.
+ * This function iterates through the list of patients and prints them
  * @param lists Pointer to the list of patients.
- * @param head Pointer to the head of the patient list to be printed.
  */
 void 	print_every_list(t_lists *lists)
 {

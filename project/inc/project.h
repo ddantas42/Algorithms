@@ -82,6 +82,6 @@ void	free_lists(t_lists *lists, char *msg, int exit_status);
 void	update_patients(t_lists *lists, int current_time);
 
 /* Input handle Functions */
-int		ler_int(char *prompt, char *err, int limit_down, int limit_up, t_lists *lists);
+int		read_int(char *prompt, char *err, int limit_down, int limit_up, t_lists *lists);
 
 #endif
