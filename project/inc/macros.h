@@ -30,7 +30,6 @@ Current time: [%d:%.2d] (%d)\n\
 
 /* Modifiable Macros */
 
-
 # define TRIAGE_TIME 10 // Time taken in triage in minutes
 # define ATTENDANCE_TIME 30 // Time taken in attendance in minutes
 
