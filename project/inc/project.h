@@ -58,7 +58,6 @@ typedef struct s_lists
 
 /* List Functions */
 void		insert(t_patient **head, t_patient *new_patient);
-t_patient 	*pop_bottom(t_patient **head);
 t_patient	*pop_top(t_patient **head);
 void		print_list(t_lists *lists, t_patient *head);
 t_patient	***get_waiting_for_attendance_lists(t_lists *lists);

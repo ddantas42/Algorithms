@@ -75,7 +75,7 @@ void	doctor_attendance_on_next_patient(t_lists *lists, int current_time)
 		
 	}
 	else
-		patiente_to_attendance = pop_bottom(&lists->red);
+		patiente_to_attendance = pop_top(&lists->red);
 
 	if (patiente_to_attendance == NULL)
 		printf("Couldn't find any patient to go on Attendance\n");

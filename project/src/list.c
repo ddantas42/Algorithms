@@ -24,29 +24,6 @@ void	insert(t_patient **head, t_patient *new_patient)
 	new_patient->next = NULL;
 }
 
-// Pop the bottom node and returns it.
-t_patient 	*pop_bottom(t_patient **head)
-{
-	if (*head == NULL)
-		return NULL;
-
-	t_patient *current = *head;
-	t_patient *prev = NULL;
-
-	while (current->next != NULL)
-	{
-		prev = current;
-		current = current->next;
-	}
-
-	if (prev != NULL)
-		prev->next = NULL;
-	else
-		*head = NULL;
-
-	return current;
-}
-
 // Pop the top node and returns it.
 t_patient	*pop_top(t_patient **head)
 {

@@ -20,6 +20,7 @@ static void update_triage(t_lists *lists, int current_time, t_patient ***color_l
 	popped->waiting_attendance_time = popped->triage_time + TRIAGE_TIME;
 	popped->color = rand() % 5; // Randomly assign a color to the patient
 
+
 	switch (popped->color)
 	{
 		case BLUE: insert(color_list[BLUE], popped); 	break;
@@ -34,7 +35,7 @@ static void update_triage(t_lists *lists, int current_time, t_patient ***color_l
 
 /**
  * update_attendance - This function updates the attendance list by checking if the
- * first patient in the attendance list has been there for more than 10 minutes.
+ * first patient in the attendance list has been there for more than 30 minutes.
  * If they have, they are moved to the attended list and their attended time is updated.
  * It recursively calls itself to check the next patient in the attendance list.
  * @param lists The lists of patients containing the attendance and attended lists.
